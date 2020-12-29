@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+#include <limits.h>
 #include "quickt.h"
 
 long get_num_duplicates(duplicates_t* a, int n);
@@ -19,7 +21,7 @@ int main(int argc, char* argv[]){
 	duplicates_t* data;
 	unsigned long num_elements = 0;
 	FILE* fp;
-	char line[256];
+	char line[256], line2[256];
 	unsigned int count = 0;
 	char file_name_sorted[256];
 	int i;
@@ -28,7 +30,8 @@ int main(int argc, char* argv[]){
 	FILE* fp2;
 	const char delim[] = ", ";
 	char* token;
-	unsigned long temp_el, temp_loc;
+	unsigned long temp_el, temp_loc, new_rand;
+	time_t t;
 
 
 	/* If file name not specified */
@@ -55,9 +58,9 @@ int main(int argc, char* argv[]){
 	printf("Reading data from file %s with %ld elements\n", argv[1], num_elements);
 	fp = fopen(argv[1], "r");
 	while(fgets(line, sizeof(line), fp)){
-		data[count].element = (long) atoi(line);
+		data[count].element = (long) atol(line);
 		data[count].location = (long) count;
-		// printf("Read %d at %d\n", atoi(line), count);
+		// printf("Read %d at %d\n", atol(line), count);
 		// printf("Read %ld at %ld\n", data[count].element, data[count].location);
 		count++;
 	}
@@ -79,10 +82,28 @@ int main(int argc, char* argv[]){
 	fp = fopen(file_name_sorted, "r");
 	while(fgets(line, sizeof(line), fp)){
 		token = strtok(line, delim);
+		temp_el = atol(token);
 		token = strtok(NULL, delim);
+		temp_loc = atol(token);
 		token = strtok(NULL, delim);
-		if(strcmp(token, "0\n") == 1){
-			printf("%s\n", token);
+		if(strcmp(token, "1\n") == 0){
+			printf("%ld, %ld, %c\n", temp_el, temp_loc, token[0]);
+
+			/* Replace the duplicate with a new random */
+			fp2 = fopen(argv[1], "w");
+			srand(time(&t));
+			new_rand = rand() % (LONG_MAX - 1);
+			count = 0;
+			while(fgets(line2, sizeof(line2), fp2)){
+				if(count == atoi(&token[0])){
+					// printf("Line: %s\n", line);
+					// fprintf(fp, "%ld", new_rand);
+				}else{
+					
+				}
+				count++;
+			}
+			fclose(fp2);
 		}
 	}
 	fclose(fp);

@@ -23,6 +23,12 @@ int main(int argc, char* argv[]){
 	unsigned int count = 0;
 	char file_name_sorted[256];
 	int i;
+	unsigned int duplicates_exist = 0;
+	unsigned long num_duplicates;
+	FILE* fp2;
+	const char delim[] = ", ";
+	char* token;
+	unsigned long temp_el, temp_loc;
 
 
 	/* If file name not specified */
@@ -58,7 +64,7 @@ int main(int argc, char* argv[]){
 	fclose(fp);
 
 	/* Enter how many duplicates */
-	long num_duplicates = get_num_duplicates(data, num_elements);
+	num_duplicates = get_num_duplicates(data, num_elements);
 	printf("The data has %ld duplicates\n", num_duplicates);
 	printf("The data has %f%% duplicates\n", ((float) num_duplicates / num_elements * 100));
 
@@ -70,10 +76,16 @@ int main(int argc, char* argv[]){
 	free(data);
 
 	/* Remove duplicates */
-	// FILE* fp2;
-	// fp = fopen(file_name_sorted, "r");
-
-	// fclose(fp);Zz
+	fp = fopen(file_name_sorted, "r");
+	while(fgets(line, sizeof(line), fp)){
+		token = strtok(line, delim);
+		token = strtok(NULL, delim);
+		token = strtok(NULL, delim);
+		if(strcmp(token, "0\n") == 1){
+			printf("%s\n", token);
+		}
+	}
+	fclose(fp);
 
 	return 0;
 }
@@ -86,7 +98,6 @@ long get_num_duplicates(duplicates_t* a, int n){
 		if(a[i].element == a[i+1].element){
 			num_duplicates++;
 			a[i+1].flag = 1;
-			printf("Index %ld", a[i+1].location);
 		}
     }
     return num_duplicates;

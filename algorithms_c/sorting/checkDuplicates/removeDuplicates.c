@@ -7,6 +7,8 @@
 
 long get_num_duplicates(duplicates_t* a, int n);
 void output_data_to_file(duplicates_t* data, unsigned long num_elements, char file_name[256]);
+unsigned long get_num_elements_in_file(char* file_name);
+void load_data_into_struct_array(duplicates_t* data, char* file_name);
 
 int main(int argc, char* argv[]){
 	
@@ -32,7 +34,7 @@ int main(int argc, char* argv[]){
 	char* token;
 	unsigned long temp_el, temp_loc, new_rand;
 	time_t t;
-
+	unsigned long* duplicate_indices;
 
 	/* If file name not specified */
 	if(argc < 2){
@@ -41,73 +43,88 @@ int main(int argc, char* argv[]){
 	}
 	
 	/* Count how many elements in file */
-	fp = fopen(argv[1], "r");
-	if(fp){
-		while(fgets(line, sizeof(line), fp)){
-			num_elements++;
-		}
-	}else{
-		printf("File not found\n");
-		return 1;
-	}
+	num_elements = get_num_elements_in_file(argv[1]);
 
 	/* Allocate struct from data [location, element] */
 	data = (duplicates_t*) calloc(num_elements, sizeof(duplicates_t));
 
 	/* Load data into array of structs */
 	printf("Reading data from file %s with %ld elements\n", argv[1], num_elements);
-	fp = fopen(argv[1], "r");
-	while(fgets(line, sizeof(line), fp)){
-		data[count].element = (long) atol(line);
-		data[count].location = (long) count;
-		// printf("Read %d at %d\n", atol(line), count);
-		// printf("Read %ld at %ld\n", data[count].element, data[count].location);
-		count++;
-	}
-	fclose(fp);
+	load_data_into_struct_array(data, argv[1]);
 
 	/* Enter how many duplicates */
 	num_duplicates = get_num_duplicates(data, num_elements);
 	printf("The data has %ld duplicates\n", num_duplicates);
-	printf("The data has %f%% duplicates\n", ((float) num_duplicates / num_elements * 100));
 
-	/*Add last 1000 of sorted array to file */
-	sprintf(file_name_sorted, "%ldsorted.dat", num_elements);
-	output_data_to_file(data, num_elements, file_name_sorted);
+	if (num_duplicates > 0 ){
 
-	/* Free memory */
-	free(data);
+		printf("The data has %f%% duplicates\n", ((float) num_duplicates / num_elements * 100));
 
-	/* Remove duplicates */
-	fp = fopen(file_name_sorted, "r");
-	while(fgets(line, sizeof(line), fp)){
-		token = strtok(line, delim);
-		temp_el = atol(token);
-		token = strtok(NULL, delim);
-		temp_loc = atol(token);
-		token = strtok(NULL, delim);
-		if(strcmp(token, "1\n") == 0){
-			printf("%ld, %ld, %c\n", temp_el, temp_loc, token[0]);
+		/*Add last 1000 of sorted array to file */
+		sprintf(file_name_sorted, "%ldsorted.dat", num_elements);
+		output_data_to_file(data, num_elements, file_name_sorted);
 
-			/* Replace the duplicate with a new random */
-			fp2 = fopen(argv[1], "w");
-			srand(time(&t));
-			new_rand = rand() % (LONG_MAX - 1);
+		/* Free memory */
+		free(data);
+
+		/* Find duplicated indices */
+		fp = fopen(file_name_sorted, "r");
+		fp2 = fopen("duplicates.log", "w");
+		duplicate_indices = (unsigned long*) calloc(num_duplicates, sizeof(unsigned long));
+		count = 0;
+		while(fgets(line, sizeof(line), fp)){
+			token = strtok(line, delim);
+			temp_el = atol(token);
+			token = strtok(NULL, delim);
+			temp_loc = atol(token);
+			token = strtok(NULL, delim);
+			if(strcmp(token, "1\n") == 0){
+				// printf("%ld, %ld, %c\n", temp_el, temp_loc, token[0]);
+				fprintf(fp2, "%ld, %ld, %c\n", temp_el, temp_loc, token[0]);
+				duplicate_indices[count] = temp_loc;
+				count++;
+			}
+		}
+		fclose(fp2);
+		fclose(fp);
+
+		/* Replace duplicates */
+		srand(time(&t));
+		for(i = 0; i < num_duplicates; i++){
+			printf("Replacing %dth duplicate\n", i);
+			fp = fopen(argv[1], "r");
+			fp2 = fopen("temp.dat", "w");
 			count = 0;
-			while(fgets(line2, sizeof(line2), fp2)){
-				if(count == atoi(&token[0])){
-					// printf("Line: %s\n", line);
-					// fprintf(fp, "%ld", new_rand);
+			while(fgets(line, sizeof(line), fp)){
+				if(count == (unsigned int) duplicate_indices[i]){
+					printf("found element %s at line %d, now replacing\n", line, count);
+					new_rand = rand() % (LONG_MAX - 1);
+					fprintf(fp2, "%ld\n", new_rand);
 				}else{
-					
+					// printf("copying normally\n");
+					fprintf(fp2, "%s", line);
 				}
 				count++;
 			}
+			fclose(fp);
 			fclose(fp2);
 		}
-	}
-	fclose(fp);
+		
+		free(duplicate_indices);
 
+		/* Replace original with temp*/
+		fp = fopen("temp.dat", "r");
+		fp2 = fopen(argv[1], "w");
+		count = 0;
+		while(fgets(line, sizeof(line), fp)){
+			fprintf(fp2, "%s", line);
+			// printf("Row %d", count);
+			count++;
+		}
+		fclose(fp);
+		fclose(fp2);
+		// remove("temp.dat");
+	}
 	return 0;
 }
 
@@ -131,6 +148,36 @@ void output_data_to_file(duplicates_t* data, unsigned long num_elements, char fi
 	fp = fopen(file_name, "w");
 	for(i = 0; i < num_elements; i++){
 		fprintf(fp, "%ld, %ld, %d\n", data[i].element, data[i].location, data[i].flag);
+	}
+	fclose(fp);
+}
+
+unsigned long get_num_elements_in_file(char* file_name){
+	unsigned long num_elements = 0;
+	char line[256];
+	FILE* fp = fopen(file_name, "r");
+	if(fp){
+		while(fgets(line, sizeof(line), fp)){
+			num_elements++;
+		}
+	}else{
+		printf("File not found\n");
+		return 1;
+	}
+	fclose(fp);
+	return num_elements;
+}
+
+void load_data_into_struct_array(duplicates_t* data, char* file_name){
+	FILE* fp = fopen(file_name, "r");
+	unsigned int count = 0;
+	char line[256];
+	while(fgets(line, sizeof(line), fp)){
+		data[count].element = (long) atol(line);
+		data[count].location = (long) count;
+		// printf("Read %d at %d\n", atol(line), count);
+		// printf("Read %ld at %ld\n", data[count].element, data[count].location);
+		count++;
 	}
 	fclose(fp);
 }

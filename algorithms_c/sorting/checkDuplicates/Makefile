@@ -6,3 +6,4 @@ clean:
 	rm -f checkDuplicates.out
 	rm -f removeDuplicates.out
 	rm -f *sorted.dat
+	rm -f *.log

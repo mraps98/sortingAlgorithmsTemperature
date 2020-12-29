@@ -97,7 +97,7 @@ int main(int argc, char* argv[]){
 			count = 0;
 			while(fgets(line, sizeof(line), fp)){
 				if(count == (unsigned int) duplicate_indices[i]){
-					printf("found element %s at line %d, now replacing\n", line, count);
+					// printf("found element %s at line %d, now replacing\n", line, count);
 					new_rand = rand() % (LONG_MAX - 1);
 					fprintf(fp2, "%ld\n", new_rand);
 				}else{
@@ -108,22 +108,23 @@ int main(int argc, char* argv[]){
 			}
 			fclose(fp);
 			fclose(fp2);
+
+			/* Replace original with temp*/
+			fp = fopen("temp.dat", "r");
+			fp2 = fopen(argv[1], "w");
+			count = 0;
+			while(fgets(line, sizeof(line), fp)){
+				fprintf(fp2, "%s", line);
+				// printf("Row %d", count);
+				count++;
+			}
+			fclose(fp);
+			fclose(fp2);
 		}
 		
 		free(duplicate_indices);
 
-		/* Replace original with temp*/
-		fp = fopen("temp.dat", "r");
-		fp2 = fopen(argv[1], "w");
-		count = 0;
-		while(fgets(line, sizeof(line), fp)){
-			fprintf(fp2, "%s", line);
-			// printf("Row %d", count);
-			count++;
-		}
-		fclose(fp);
-		fclose(fp2);
-		// remove("temp.dat");
+		remove("temp.dat");
 	}
 	return 0;
 }

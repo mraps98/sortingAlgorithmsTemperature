@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "quick_t.h"
+#include "quickt.h"
 
 long get_num_duplicates(duplicates_t* a, int n);
+void output_data_to_file(duplicates_t* data, unsigned long num_elements, char file_name[256]);
 
 int main(int argc, char* argv[]){
 	
@@ -11,6 +12,7 @@ int main(int argc, char* argv[]){
 	typedef struct duplicates{
 		long location;
 		long element;
+		unsigned int flag;
 	}duplicates_t;
 
 	/* declare variables */
@@ -41,14 +43,16 @@ int main(int argc, char* argv[]){
 	}
 
 	/* Allocate struct from data [location, element] */
-	data = (duplicates_t*) malloc(num_elements * sizeof(duplicates_t));
+	data = (duplicates_t*) calloc(num_elements, sizeof(duplicates_t));
 
 	/* Load data into array of structs */
 	printf("Reading data from file %s with %ld elements\n", argv[1], num_elements);
 	fp = fopen(argv[1], "r");
 	while(fgets(line, sizeof(line), fp)){
-		data[count].element = atoi(line);
-		data[count].location = count;
+		data[count].element = (long) atoi(line);
+		data[count].location = (long) count;
+		// printf("Read %d at %d\n", atoi(line), count);
+		// printf("Read %ld at %ld\n", data[count].element, data[count].location);
 		count++;
 	}
 	fclose(fp);
@@ -60,30 +64,41 @@ int main(int argc, char* argv[]){
 
 	/*Add last 1000 of sorted array to file */
 	sprintf(file_name_sorted, "%ldsorted.dat", num_elements);
-	printf("Outputing last 100 elements of the sorted array to ./%s\n", file_name_sorted);
-	fp = fopen(file_name_sorted, "w");
-	for(i = 0; i < num_elements; i++){
-		fprintf(fp, "%ld\n", data[i]);
-	}
+	output_data_to_file(data, num_elements, file_name_sorted);
 
 	/* Free memory */
-	fclose(fp);
 	free(data);
+
+	/* Remove duplicates */
+	// FILE* fp2;
+	// fp = fopen(file_name_sorted, "r");
+
+	// fclose(fp);Zz
+
 	return 0;
 }
 
 long get_num_duplicates(duplicates_t* a, int n){
-	FILE* fp;
-	fp = fopen("duplicates.log", "w");
     long i;
     unsigned long num_duplicates = 0;
     quick_sort(a, 0, n -1);
     for(i = 0; i < n; i++){
-		if(a[i].element == a[i+1].element){ // use strcmp not ==
+		if(a[i].element == a[i+1].element){
 			num_duplicates++;
-			// fprintf(fp, "Duplicate: %ld at index %ld\n", a[i], i);
+			a[i+1].flag = 1;
+			printf("Index %ld", a[i+1].location);
 		}
     }
-	fclose(fp);
     return num_duplicates;
+}
+
+void output_data_to_file(duplicates_t* data, unsigned long num_elements, char file_name[256]){
+	FILE* fp;
+	int i;
+	printf("Outputing all elements of the sorted array to ./%s\n", file_name);
+	fp = fopen(file_name, "w");
+	for(i = 0; i < num_elements; i++){
+		fprintf(fp, "%ld, %ld, %d\n", data[i].element, data[i].location, data[i].flag);
+	}
+	fclose(fp);
 }

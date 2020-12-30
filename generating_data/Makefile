@@ -1,12 +1,11 @@
-./output/generateIntData.out: ./int.c
-	gcc ./int.c -lm -o ./output/generateIntData.out
-	./output/generateIntData.out
+./*.out: ./*.c
+	gcc ./int.c -lm -o ./generateIntData.out
+	gcc ./long.c -lm -o ./generateLongData.out
+	gcc ./random_long_file.c -lm -o generate_random_numbers_file.out
 
-./output/generateLongData.out: ./long.c
-	gcc ./long.c -lm -o ./output/generateLongData.out
-	./output/generateLongData.out
 
 clean:
-	rm ./data/int/*
-	rm ./data/long/*
-	rm ./output/*
+	rm -f ./data/int/*
+	rm -f ./data/long/*
+	rm -f ./output/*
+	rm -f *.out

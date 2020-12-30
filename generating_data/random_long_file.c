@@ -4,8 +4,16 @@
 #include <stdlib.h> 
 #include <time.h> 
 #include <limits.h> 
-#define Row_N 1024000000
+#define Row_N 2000000
 
+
+long   toSmallRandoms( )
+                             
+{ 
+    long num =  rand() % (LONG_MAX /100);
+   
+    return num;
+} 
 
 
 long   toRandoms( )
@@ -17,11 +25,20 @@ long   toRandoms( )
 } 
 
 
-int main() {
+int main(int argc, char* argv[]) {
+  
+  if(argc < 2){
+    printf("Usage: ./%s <num_elements_to_generate>\n", argv[0]);
+    return 0;
+  }
+  char file_name[256];
   long i;
   char str;
   FILE * fptr;
-  fptr = fopen("rand1024.dat", "w");
+
+
+  sprintf(file_name, "rand%ld.dat", atol(argv[1]));
+  fptr = fopen(file_name, "w");
   if (fptr == NULL) {
     printf("Error in creating output.dat\n");
     return 0;
@@ -31,7 +48,7 @@ int main() {
   srand(time(&t));
   
  
-  for (i = 1; i <= Row_N; i++) {
+  for (i = 1; i <= atol(argv[1]); i++) {
       
       //printf("%ld\n", toRandoms());
     fprintf(fptr, "%ld\n", toRandoms());

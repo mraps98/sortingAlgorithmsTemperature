@@ -1,4 +1,4 @@
-./checkDuplicates.out: *.c *.h
+./checkDuplicates.out ./removeDuplicates.out: *.c *.h
 	gcc checkDuplicates.c quick.c quick.h -lm -o checkDuplicates.out
 	gcc removeDuplicates.c quickt.c quickt.h -lm -o removeDuplicates.out
 

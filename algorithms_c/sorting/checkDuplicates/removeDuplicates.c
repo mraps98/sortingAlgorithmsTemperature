@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <limits.h>
+#include "quick.h"
 #include "quickt.h"
 
 long get_num_duplicates(duplicates_t* a, int n);
@@ -26,7 +27,7 @@ int main(int argc, char* argv[]){
 	char line[256], line2[256];
 	unsigned int count = 0;
 	char file_name_sorted[256];
-	int i;
+	int i, j;
 	unsigned int duplicates_exist = 0;
 	unsigned long num_duplicates;
 	FILE* fp2;
@@ -60,7 +61,7 @@ int main(int argc, char* argv[]){
 
 		printf("The data has %f%% duplicates\n", ((float) num_duplicates / num_elements * 100));
 
-		/*Add last 1000 of sorted array to file */
+		/*Add element, location, flag of sorted array to file */
 		sprintf(file_name_sorted, "%ldsorted.dat", num_elements);
 		output_data_to_file(data, num_elements, file_name_sorted);
 
@@ -69,7 +70,7 @@ int main(int argc, char* argv[]){
 
 		/* Find duplicated indices */
 		fp = fopen(file_name_sorted, "r");
-		fp2 = fopen("duplicates.log", "w");
+		// fp2 = fopen("duplicates.log", "w");
 		duplicate_indices = (unsigned long*) calloc(num_duplicates, sizeof(unsigned long));
 		count = 0;
 		while(fgets(line, sizeof(line), fp)){
@@ -80,7 +81,7 @@ int main(int argc, char* argv[]){
 			token = strtok(NULL, delim);
 			if(strcmp(token, "1\n") == 0){
 				// printf("%ld, %ld, %c\n", temp_el, temp_loc, token[0]);
-				fprintf(fp2, "%ld, %ld, %c\n", temp_el, temp_loc, token[0]);
+				// fprintf(fp2, "%ld, %ld, %c\n", temp_el, temp_loc, token[0]);
 				duplicate_indices[count] = temp_loc;
 				count++;
 			}
@@ -88,39 +89,43 @@ int main(int argc, char* argv[]){
 		fclose(fp2);
 		fclose(fp);
 
+
+		/*  Sort duplicate indices*/
+		quick_sort(duplicate_indices, 0, num_duplicates - 1);
+
 		/* Replace duplicates */
 		srand(time(&t));
-		for(i = 0; i < num_duplicates; i++){
-			printf("Replacing %dth duplicate\n", i);
-			fp = fopen(argv[1], "r");
-			fp2 = fopen("temp.dat", "w");
-			count = 0;
-			while(fgets(line, sizeof(line), fp)){
-				if(count == (unsigned int) duplicate_indices[i]){
-					// printf("found element %s at line %d, now replacing\n", line, count);
-					new_rand = rand() % (LONG_MAX - 1);
-					fprintf(fp2, "%ld\n", new_rand);
-				}else{
-					// printf("copying normally\n");
-					fprintf(fp2, "%s", line);
-				}
-				count++;
-			}
-			fclose(fp);
-			fclose(fp2);
-
-			/* Replace original with temp*/
-			fp = fopen("temp.dat", "r");
-			fp2 = fopen(argv[1], "w");
-			count = 0;
-			while(fgets(line, sizeof(line), fp)){
+		fp = fopen(argv[1], "r");
+		fp2 = fopen("temp.dat", "w");
+		count = 0; /* Line Count */
+		i = 0; /* Duplicate index */
+		while(fgets(line, sizeof(line), fp)){
+			if(count == (unsigned int) duplicate_indices[i]){
+				printf("Replacing %dth duplicate\n", i + 1);
+				// printf("found element %s at line %d, now replacing\n", line, count);
+				new_rand = rand() % (LONG_MAX - 1);
+				fprintf(fp2, "%ld\n", new_rand);
+				i++;
+			}else{
+				// printf("copying normally\n");
 				fprintf(fp2, "%s", line);
-				// printf("Row %d", count);
-				count++;
 			}
-			fclose(fp);
-			fclose(fp2);
+			count++;
 		}
+		fclose(fp);
+		fclose(fp2);
+
+		/* Replace original with temp*/
+		fp = fopen("temp.dat", "r");
+		fp2 = fopen(argv[1], "w");
+		count = 0;
+		while(fgets(line, sizeof(line), fp)){
+			fprintf(fp2, "%s", line);
+			// printf("Row %d", count);
+			count++;
+		}
+		fclose(fp);
+		fclose(fp2);
 		
 		free(duplicate_indices);
 
@@ -132,7 +137,7 @@ int main(int argc, char* argv[]){
 long get_num_duplicates(duplicates_t* a, int n){
     long i;
     unsigned long num_duplicates = 0;
-    quick_sort(a, 0, n -1);
+    quick_sortt(a, 0, n -1);
     for(i = 0; i < n; i++){
 		if(a[i].element == a[i+1].element){
 			num_duplicates++;

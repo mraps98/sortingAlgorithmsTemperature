@@ -1,24 +1,38 @@
-/* Source: https://github.com/caisah/Sedgewick-algorithms-in-c-exercises-and-examples/blob/master/06-elementary_sorting_methods/6.04-bubble_sort/examples/prog_6.4-bubble_sort.c*/
-#include <stdio.h> 
+/* Source: https://github.com/diptangsu/Sorting-Algorithms/blob/master/C/BucketSort.c */
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-#define key(A) (A)
-#define less(A, B) (key(A) < key(B))
-#define exch(A, B) {Item t = A; A = B; B = t;}
-#define compexch(A, B) if (less(B, A)) exch(A, B)
-
-typedef int Item;
-
-void sort(Item a[], int l, int r)
+static int getMax(int array[], int size)
 {
-  int i, j;
-
-  for (i = l; i < r; i++)
-    for (j = r;  j > i; j--)
-      compexch(a[j-1], a[j]);
+    int max = array[0];
+    for (int i = 1; i < size; i++)
+        if (array[i] > max)
+            max = array[i];
+    return max;
 }
-
+void bucket_sort(int array[], int size)
+{
+    const int max = getMax(array, size);
+    int *bucket = (int *)calloc(max + 1, sizeof(int));
+    for (int i = 0; i <= max; i++)
+    {
+        bucket[i] = 0;
+    }
+    for (int i = 0; i < size; i++)
+    {
+        bucket[array[i]]++;
+    }
+    for (int i = 0, j = 0; i <= max; i++)
+    {
+        while (bucket[i] > 0)
+        {
+            array[j++] = i;
+            bucket[i]--;
+        }
+    }
+    free(bucket);
+}
 int main(int argc, char *argv[])
 {
 
@@ -42,7 +56,7 @@ int main(int argc, char *argv[])
         for (i = 0; i < N; i++)
             printf("%3d ", a[i]);
         printf("\nAfter: ");
-        bubble_sort(a, N);
+        bucket_sort(a, N);
         for (i = 0; i < N; i++)
             printf("%3d ", a[i]);
         printf("\n");

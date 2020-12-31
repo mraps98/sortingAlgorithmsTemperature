@@ -1,22 +1,35 @@
-/* Source: https://github.com/caisah/Sedgewick-algorithms-in-c-exercises-and-examples/blob/master/06-elementary_sorting_methods/6.04-bubble_sort/examples/prog_6.4-bubble_sort.c*/
-#include <stdio.h> 
+/* Source: https://github.com/diptangsu/Sorting-Algorithms/blob/master/C/BogoSort.c*/
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdbool.h>
 
-#define key(A) (A)
-#define less(A, B) (key(A) < key(B))
-#define exch(A, B) {Item t = A; A = B; B = t;}
-#define compexch(A, B) if (less(B, A)) exch(A, B)
-
-typedef int Item;
-
-void sort(Item a[], int l, int r)
+static bool check_sorted(int *a, int n)
 {
-  int i, j;
+    while (--n >= 1)
+    {
+        if (a[n] < a[n - 1])
+            return false;
+    }
+    return true;
+}
 
-  for (i = l; i < r; i++)
-    for (j = r;  j > i; j--)
-      compexch(a[j-1], a[j]);
+static void shuffle(int *a, int n)
+{
+    int i, t, r;
+    for (i = 0; i < n; i++)
+    {
+        t = a[i];
+        r = rand() % n;
+        a[i] = a[r];
+        a[r] = t;
+    }
+}
+
+void bogo_sort(int *a, int n)
+{
+    while (!check_sorted(a, n))
+        shuffle(a, n);
 }
 
 int main(int argc, char *argv[])
@@ -42,7 +55,7 @@ int main(int argc, char *argv[])
         for (i = 0; i < N; i++)
             printf("%3d ", a[i]);
         printf("\nAfter: ");
-        bubble_sort(a, N);
+        bogo_sort(a, N);
         for (i = 0; i < N; i++)
             printf("%3d ", a[i]);
         printf("\n");

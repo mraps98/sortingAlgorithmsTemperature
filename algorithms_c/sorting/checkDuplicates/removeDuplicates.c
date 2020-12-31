@@ -10,6 +10,7 @@ long get_num_duplicates(duplicates_t* a, int n);
 void output_data_to_file(duplicates_t* data, unsigned long num_elements, char file_name[256]);
 unsigned long get_num_elements_in_file(char* file_name);
 void load_data_into_struct_array(duplicates_t* data, char* file_name);
+void print_current_time();
 
 int main(int argc, char* argv[]){
 	
@@ -36,6 +37,7 @@ int main(int argc, char* argv[]){
 	unsigned long temp_el, temp_loc, new_rand;
 	time_t t;
 	unsigned long* duplicate_indices;
+	struct tm* tm_struct;
 
 	/* If file name not specified */
 	if(argc < 2){
@@ -43,6 +45,10 @@ int main(int argc, char* argv[]){
 		return 0;
 	}
 	
+	/*  Print starting time */
+	printf("Started at ");
+	print_current_time();
+
 	/* Count how many elements in file */
 	num_elements = get_num_elements_in_file(argv[1]);
 
@@ -58,7 +64,6 @@ int main(int argc, char* argv[]){
 	printf("The data has %ld duplicates\n", num_duplicates);
 
 	if (num_duplicates > 0 ){
-
 		printf("The data has %f%% duplicates\n", ((float) num_duplicates / num_elements * 100));
 
 		/*Add element, location, flag of sorted array to file */
@@ -89,6 +94,7 @@ int main(int argc, char* argv[]){
 		// fclose(fp2);
 		fclose(fp);
 
+		remove(file_name_sorted);
 
 		/*  Sort duplicate indices*/
 		quick_sort(duplicate_indices, 0, num_duplicates - 1);
@@ -101,9 +107,11 @@ int main(int argc, char* argv[]){
 		i = 0; /* Duplicate index */
 		while(fgets(line, sizeof(line), fp)){
 			if(count == (unsigned int) duplicate_indices[i]){
-				printf("Replacing %dth duplicate\n", i + 1);
+				// printf("Replacing %dth duplicate\n", i + 1);
 				// printf("found element %s at line %d, now replacing\n", line, count);
-				new_rand = rand() % (LONG_MAX - 1);
+				t = time(NULL);
+				tm_struct = localtime(&t);
+				new_rand = rand() % ((LONG_MAX - 1) / (2 + tm_struct->tm_min + tm_struct-> tm_sec));
 				fprintf(fp2, "%ld\n", new_rand);
 				i++;
 			}else{
@@ -129,8 +137,10 @@ int main(int argc, char* argv[]){
 		
 		free(duplicate_indices);
 
-		remove("temp.dat");
+		remove("temp.dat");		
 	}
+	printf("Ended at ");
+	print_current_time();
 	return 0;
 }
 
@@ -186,4 +196,11 @@ void load_data_into_struct_array(duplicates_t* data, char* file_name){
 		count++;
 	}
 	fclose(fp);
+}
+
+void print_current_time(){
+	struct tm* tm_struct;
+	time_t t = time(NULL);
+	tm_struct = localtime(&t);
+	printf("%d:%d:%d\n", tm_struct->tm_hour, tm_struct->tm_min, tm_struct->tm_sec);
 }

@@ -38,6 +38,7 @@ int main(int argc, char* argv[]){
 	time_t t;
 	unsigned long* duplicate_indices;
 	struct tm* tm_struct;
+	int divisor = 1;
 
 	/* If file name not specified */
 	if(argc < 2){
@@ -48,7 +49,7 @@ int main(int argc, char* argv[]){
 	/*  Print starting time */
 	printf("Started at ");
 	print_current_time();
-
+	
 	/* Count how many elements in file */
 	num_elements = get_num_elements_in_file(argv[1]);
 
@@ -68,6 +69,15 @@ int main(int argc, char* argv[]){
 
 		/*Add element, location, flag of sorted array to file */
 		sprintf(file_name_sorted, "%ldsorted.dat", num_elements);
+		
+		/* If B exists, change divisor to 2 + mm + ss */
+		fp = fopen(file_name_sorted, "r");
+		if(fp){
+			t = time(NULL);
+			tm_struct = localtime(&t);
+			divisor = (2 + tm_struct->tm_min + tm_struct-> tm_sec);
+		}
+
 		output_data_to_file(data, num_elements, file_name_sorted);
 
 		/* Free memory */
@@ -94,7 +104,7 @@ int main(int argc, char* argv[]){
 		// fclose(fp2);
 		fclose(fp);
 
-		remove(file_name_sorted);
+		// remove(file_name_sorted);
 
 		/*  Sort duplicate indices*/
 		quick_sort(duplicate_indices, 0, num_duplicates - 1);
@@ -111,7 +121,7 @@ int main(int argc, char* argv[]){
 				// printf("found element %s at line %d, now replacing\n", line, count);
 				t = time(NULL);
 				tm_struct = localtime(&t);
-				new_rand = rand() % ((LONG_MAX - 1) / (2 + tm_struct->tm_min + tm_struct-> tm_sec));
+				new_rand = rand() % ((LONG_MAX - 1) / divisor);
 				fprintf(fp2, "%ld\n", new_rand);
 				i++;
 			}else{

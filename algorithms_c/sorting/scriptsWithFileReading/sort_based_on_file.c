@@ -2,11 +2,18 @@
 #include<stdlib.h>
 #include<string.h>
 #include<time.h>
+#include "bogo.h"
 #include "bubble.h"
+#include "bucket.h"
+#include "comb.h"
+#include "counting.h"
+#include "cycle.h"
 #include "heap.h"
 #include "insertion.h"
 #include "merge.h"
+#include "pancake.h"
 #include "quick.h"
+#include "radix.h"
 #include "selection.h"
 #include "shaker.h"
 #include "shell.h"
@@ -72,6 +79,56 @@ int main(int argc, char* argv[]){
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "bogo") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			bogo_sort(data, number_of_items);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "bucket") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			bucket_sort(data, number_of_items);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "comb") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			comb_sort(data, number_of_items);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "counting") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			counting_sort(data, number_of_items);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "cycle") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			cycle_sort(data, number_of_items);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "heap") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
@@ -102,12 +159,32 @@ int main(int argc, char* argv[]){
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "pancake") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			pancake_sort(data, number_of_items);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "quick") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
 			memcpy(data, data_original, number_of_items);
 			start = clock();
 			quick_sort(data, 0, number_of_items - 1);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "radix") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			radix_sort(data, number_of_items);
 			end = clock();
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -144,8 +221,7 @@ int main(int argc, char* argv[]){
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else{
 		printf("incorrect sort_type entered\n");
-	}
-	
+	}	
 	// printf("after:\n");
 	// for(int i = 0; i < number_of_items; i++){
 	// 	printf("%ld, ", data[i]);

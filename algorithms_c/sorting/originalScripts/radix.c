@@ -2,7 +2,7 @@
 #include<stdio.h>
 #include<time.h>
 #include<stdlib.h>
-int getMax(int arr[], int n) {
+static int getMax(int arr[], int n) {
     int mx = arr[0];
     int i;
     for (i = 1; i < n; i++)

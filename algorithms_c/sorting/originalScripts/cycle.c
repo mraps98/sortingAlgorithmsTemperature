@@ -7,7 +7,7 @@ static void show_array(int *array, size_t a_len);
 /*
  * Sort an array in place and return the number of writes.
  */
-static int cycle_sort(int *list, size_t l_len)
+int cycle_sort(int *list, size_t l_len)
 {
     int cycleStart, writes = 0;
 

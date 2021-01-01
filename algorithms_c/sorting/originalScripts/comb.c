@@ -13,7 +13,7 @@ static int newgap(int gap)
     return gap;
 }
 
-static void comb_sort(int a[], int aSize)
+void comb_sort(int a[], int aSize)
 {
     int gap = aSize;
     int temp, i;

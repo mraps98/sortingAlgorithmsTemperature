@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-static void counting_sort(int a[], int size){
+void counting_sort(int a[], int size){
     int max = 0, index = 0;
     for (int i = 0; i < size; i++){
         if (max < a[i]) max = a[i];

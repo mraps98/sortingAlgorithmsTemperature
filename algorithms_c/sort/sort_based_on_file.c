@@ -15,12 +15,12 @@
 #include "insertion.h"
 #include "merge.h"
 #include "pancake.h"
-#include "quick.h"
 #include "radix.h"
 #include "selection.h"
 #include "shaker.h"
 #include "shell.h"
 #include "stooge.h"
+#include "quick.h"
 
 int isArraySorted(long[], int);
 unsigned long get_num_elements_in_file(char* file_name);

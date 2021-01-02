@@ -2,12 +2,15 @@
 #include<stdlib.h>
 #include<string.h>
 #include<time.h>
+#include "bead.h"
 #include "bogo.h"
 #include "bubble.h"
 #include "bucket.h"
 #include "comb.h"
+#include "cocktail.h"
 #include "counting.h"
 #include "cycle.h"
+#include "gnome.h"
 #include "heap.h"
 #include "insertion.h"
 #include "merge.h"
@@ -17,9 +20,11 @@
 #include "selection.h"
 #include "shaker.h"
 #include "shell.h"
+#include "stooge.h"
 
 int isArraySorted(long[], int);
 unsigned long get_num_elements_in_file(char* file_name);
+int cmpfunc(const void* a, const void* b);
 
 int main(int argc, char* argv[]){
 	
@@ -67,14 +72,13 @@ int main(int argc, char* argv[]){
 	// for(int i = 0; i < number_of_items; i++){
 		// printf("%ld, ", data[i]);
 	// }
-	
 	/* Sort based on type */
-	if(strcmp(sort_type, "bubble") == 0){
+	if(strcmp(sort_type, "bead") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
 			memcpy(data, data_original, number_of_items);
 			start = clock();
-			bubble_sort(data, 0, number_of_items - 1);
+			bead_sort(data, number_of_items);
 			end = clock();
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -85,6 +89,16 @@ int main(int argc, char* argv[]){
 			memcpy(data, data_original, number_of_items);
 			start = clock();
 			bogo_sort(data, number_of_items);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "bubble") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			bubble_sort(data, 0, number_of_items - 1);
 			end = clock();
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -109,6 +123,16 @@ int main(int argc, char* argv[]){
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "cocktail") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			cocktail_sort(data, number_of_items);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "counting") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
@@ -125,6 +149,16 @@ int main(int argc, char* argv[]){
 			memcpy(data, data_original, number_of_items);
 			start = clock();
 			cycle_sort(data, number_of_items);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "gnome") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			gnome_sort(data, number_of_items);
 			end = clock();
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -179,6 +213,15 @@ int main(int argc, char* argv[]){
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if (strcmp(sort_type, "q") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			qsort(data, number_of_items, sizeof(long), cmpfunc);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
 	}else if(strcmp(sort_type, "radix") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
@@ -219,8 +262,19 @@ int main(int argc, char* argv[]){
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "stooge") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			stooge_sort(data, 0, number_of_items - 1);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else{
 		printf("incorrect sort_type entered\n");
+		return -1;
 	}	
 	// printf("after:\n");
 	// for(int i = 0; i < number_of_items; i++){
@@ -235,6 +289,7 @@ int main(int argc, char* argv[]){
 		printf("Validation: Array not sorted\n");
 	}
 	free(data);
+	free(data_original);
 	
 	return 0;
 }
@@ -272,4 +327,8 @@ unsigned long get_num_elements_in_file(char* file_name){
 	}
 	fclose(fp);
 	return num_elements;
+}
+
+int cmpfunc(const void* a, const void* b){
+	return (*(int*)a - *(int*)b);
 }

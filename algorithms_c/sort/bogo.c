@@ -1,5 +1,4 @@
 /* Source: https://github.com/diptangsu/Sorting-Algorithms/blob/master/C/BogoSort.c*/
-#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "bogo.h"
@@ -16,7 +15,8 @@ static bool check_sorted(long *a, int n)
 
 static void shuffle(long *a, int n)
 {
-    int i, t, r;
+    int i, r;
+    long t;
     for (i = 0; i < n; i++)
     {
         t = a[i];

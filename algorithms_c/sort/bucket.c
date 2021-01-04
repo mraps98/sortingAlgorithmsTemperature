@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "bucket.h"
 
-static int getMax(long array[], int size)
+static long getMax(long array[], int size)
 {
     int max = array[0];
     for (int i = 1; i < size; i++)
@@ -12,7 +12,7 @@ static int getMax(long array[], int size)
 }
 void bucket_sort(long array[], int size)
 {
-    const int max = getMax(array, size);
+    const long max = getMax(array, size);
     long *bucket = (long *)calloc(max + 1, sizeof(long));
     for (int i = 0; i <= max; i++)
     {

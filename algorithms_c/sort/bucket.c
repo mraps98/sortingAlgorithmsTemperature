@@ -1,5 +1,4 @@
 /* Source: https://github.com/diptangsu/Sorting-Algorithms/blob/master/C/BucketSort.c */
-#include <stdio.h>
 #include <stdlib.h>
 #include "bucket.h"
 

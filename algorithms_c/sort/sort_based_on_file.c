@@ -3,6 +3,7 @@
 #include<string.h>
 #include<time.h>
 #include "bead.h"
+#include "binary_insertion.h"
 #include "bogo.h"
 #include "bubble.h"
 #include "bucket.h"
@@ -82,6 +83,16 @@ int main(int argc, char* argv[]){
 			memcpy(data, data_original, number_of_items);
 			start = clock();
 			bead_sort(data, number_of_items);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "binsertion") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			binsertion_sort(data, number_of_items);
 			end = clock();
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}

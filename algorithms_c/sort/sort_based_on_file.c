@@ -25,6 +25,7 @@
 int isArraySorted(long[], int);
 unsigned long get_num_elements_in_file(char* file_name);
 int cmpfunc(const void* a, const void* b);
+void print_current_time();
 
 int main(int argc, char* argv[]){
 	
@@ -43,6 +44,8 @@ int main(int argc, char* argv[]){
 	double total_cpu_time_used = 0;
 	unsigned int number_of_iterations = 1;
 	
+	printf("Started at: ");
+	print_current_time();
 
 	if(argc < 3){
 		printf("Usage: %s <sort_type> <file_name>", argv[0]);
@@ -290,7 +293,8 @@ int main(int argc, char* argv[]){
 	}
 	free(data);
 	free(data_original);
-	
+	printf("Ended at: ");
+	print_current_time();	
 	return 0;
 }
 
@@ -331,4 +335,12 @@ unsigned long get_num_elements_in_file(char* file_name){
 
 int cmpfunc(const void* a, const void* b){
 	return (*(int*)a - *(int*)b);
+}
+
+void print_current_time(){
+	struct tm* tm_struct;
+	time_t t;
+	t = time(NULL);
+	tm_struct = localtime(&t);	
+	printf("%d:%d:%d\n", tm_struct->tm_hour, tm_struct->tm_min, tm_struct->tm_sec);
 }

@@ -18,6 +18,7 @@
 #include "insertion_rec.h"
 #include "merge.h"
 #include "pancake.h"
+#include "partition.h"
 #include "radix.h"
 #include "selection.h"
 #include "shaker.h"
@@ -235,6 +236,16 @@ int main(int argc, char* argv[]){
 			memcpy(data, data_original, number_of_items);
 			start = clock();
 			pancake_sort(data, number_of_items);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "partition") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			partition_sort(data, 0, number_of_items - 1);
 			end = clock();
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}

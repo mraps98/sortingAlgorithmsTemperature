@@ -1,7 +1,7 @@
 /* Source https://github.com/TheAlgorithms/C/blob/master/sorting/binary_insertion_sort.c */
 #include <stdlib.h>
 #include "binary_insertion.h"
-static int binarySearch(long *arr, long key, long low, long high)
+static long binary_search(long *arr, long key, long low, long high)
 {
 	if (low >= high)
 		return (key > arr[low]) ? (low + 1) : low;
@@ -9,9 +9,9 @@ static int binarySearch(long *arr, long key, long low, long high)
 	if (arr[mid] == key)
 		return mid + 1;
 	else if (arr[mid] > key)
-		return binarySearch(arr, key, low, mid - 1);
+		return binary_search(arr, key, low, mid - 1);
 	else
-		return binarySearch(arr, key, mid + 1, high);
+		return binary_search(arr, key, mid + 1, high);
 }
 /*This is where the sorting of the array takes place
  *  arr[] --- Array to be sorted
@@ -24,8 +24,8 @@ void binsertion_sort(long *arr, long size)
 	{
 		j = i - 1;
 		key = arr[i];
-		/* Use binrary search to find exact key's index */
-		index = binarySearch(arr, key, 0, j);
+		/* Use binary search to find exact key's index */
+		index = binary_search(arr, key, 0, j);
 		/* Move all elements greater than key from [index...j]  one position */
 		while (j >= index)
 		{

@@ -6,6 +6,7 @@
 #include "binary_insertion.h"
 #include "bogo.h"
 #include "bubble.h"
+#include "bubble_rec.h"
 #include "bucket.h"
 #include "comb.h"
 #include "cocktail.h"
@@ -113,6 +114,16 @@ int main(int argc, char* argv[]){
 			memcpy(data, data_original, number_of_items);
 			start = clock();
 			bubble_sort(data, 0, number_of_items - 1);
+			end = clock();
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "bubble_rec") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			memcpy(data, data_original, number_of_items);
+			start = clock();
+			bubble_rec_sort(data, number_of_items);
 			end = clock();
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}

@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<time.h>
+#include <sys/time.h>
 #include "bead.h"
 #include "binary_insertion.h"
 #include "bogo.h"
@@ -510,8 +511,11 @@ int cmpfunc(const void* a, const void* b){
 
 void print_current_time(){
 	struct tm* tm_struct;
+	struct timeval tval_now;
 	time_t t;
 	t = time(NULL);
 	tm_struct = localtime(&t);	
-	printf("%d:%d:%d\n", tm_struct->tm_hour, tm_struct->tm_min, tm_struct->tm_sec);
+	gettimeofday(&tval_now, NULL); 	
+	printf("%d:%d:%d", tm_struct->tm_hour, tm_struct->tm_min, tm_struct->tm_sec);
+	printf(":%ld\n", tval_now.tv_usec);
 }

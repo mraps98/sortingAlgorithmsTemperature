@@ -1,7 +1,8 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <stdbool.h>
 #include <sys/time.h>
 #include "bead.h"
 #include "binary_insertion.h"
@@ -50,30 +51,38 @@ int main(int argc, char* argv[]){
 	clock_t start, end;
 	double average_cpu_time_used = 0;
 	double total_cpu_time_used = 0;
+	double total_copying_time = 0;
 	unsigned int number_of_iterations = 1;
-	
-	printf("Started program at: ");
-	print_current_time();
+	const bool debug_mode = false;
+
 
 	if(argc < 3){
 		printf("Usage: %s <sort_type> <file_name>", argv[0]);
 		return -1;
 	}
 	if(argc == 4){
-		printf("%s", argv[3]);
 		number_of_iterations = atoi(argv[3]);
 	}
+	
 	number_of_items = get_num_elements_in_file(argv[2]);
 	strcpy(sort_type, argv[1]);
-	printf("Sort type = %s and number of items is %ld and number of iterations is %d\n", sort_type, number_of_items, number_of_iterations);
-	
+	if(debug_mode){	
+		printf("Started program at: ");
+		print_current_time();
+		printf("Sort type = %s and number of items is %ld and number of iterations is %d\n", sort_type, number_of_items, number_of_iterations);
+	}else{
+		printf("%s, %s, %d, *, ", sort_type, argv[2], number_of_iterations);
+		print_current_time();
+	}
 	
 	fp = fopen(argv[2], "r");
 	data_original = (long*) calloc(number_of_items, sizeof(long));
 	data = (long*) calloc(number_of_items, sizeof(long));
 	
-	printf("Started loading data at ");
-	print_current_time();	
+	if(debug_mode){	
+		printf("Started loading data at ");
+		print_current_time();	
+	}
 
 	/* Load Data from file */
 	while(fgets(line, sizeof(line), fp)){
@@ -83,392 +92,656 @@ int main(int argc, char* argv[]){
 	
 	fclose(fp);
 	
-	printf("Ended loading data at ");
-	print_current_time();	
+	if(debug_mode){	
+		printf("Ended loading data at ");
+		print_current_time();	
+	}
 
 	/* Sort based on type */
 	if(strcmp(sort_type, "bead") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			bead_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "binsertion") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			binsertion_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "bogo") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			bogo_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "bubble") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			bubble_sort(data, 0, number_of_items - 1);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "bubble_rec") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			bubble_rec_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "bucket") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			bucket_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "comb") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			comb_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "cocktail") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			cocktail_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "counting") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			counting_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "cycle") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			cycle_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "gnome") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			gnome_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "heap") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			heap_sort(data, 0, number_of_items - 1);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "insertion") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			insertion_sort(data, 0, number_of_items - 1);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "insertion_rec") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			insertion_rec_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "merge") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			merge_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "pancake") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			pancake_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "partition") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			partition_sort(data, 0, number_of_items - 1);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "pigeonhole") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			pigeonhole_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "quick") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			quick_sort(data, 0, number_of_items - 1);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if (strcmp(sort_type, "q") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			qsort(data, number_of_items, sizeof(long), cmpfunc);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 	}else if(strcmp(sort_type, "radix") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			radix_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "selection") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			selection_sort(data, 0, number_of_items - 1);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "shaker") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			shaker_sort(data, number_of_items);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "shell") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			shell_sort(data, 0, number_of_items - 1);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
-			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "stooge") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start =clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			stooge_sort(data, 0, number_of_items - 1);
 			end = clock();
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();
+				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "tree") == 0){
 		int i;
 		for(i = 0; i < number_of_iterations; i++){
+			start =clock();
 			acpy(data, data_original,  number_of_items);
-			printf("Started iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
 			start = clock();
 			tree_sort(data, number_of_items);
 			end = clock();
-			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
-			printf("Stopped iteration %d of sorting data at ", i+1);
-			print_current_time();	
+			if(debug_mode){
+				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+				printf("Stopped iteration %d of sorting data at ", i+1	);
+				print_current_time();
+				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else{
@@ -476,17 +749,23 @@ int main(int argc, char* argv[]){
 		return -1;
 	}	
 		
-	printf("Total time taken for %d iterations is %f seconds\n", number_of_iterations, total_cpu_time_used);
-	printf("Average time taken for %d iterations is %f seconds\n", number_of_iterations, average_cpu_time_used);
-	if(isArraySorted(data, number_of_items)){
-		printf("Validation: Array has been sorted\n");
-	}else{
-		printf("Validation: Array not sorted\n");
-	}
 	free(data);
 	free(data_original);
-	printf("Ended program at: ");
-	print_current_time();	
+	
+	if(debug_mode){
+		printf("Total time taken for %d iterations is %f seconds\n", number_of_iterations, total_cpu_time_used);
+		printf("Average time taken for %d iterations is %f seconds\n", number_of_iterations, average_cpu_time_used);
+		if(isArraySorted(data, number_of_items)){
+			printf("Validation: Array has been sorted\n");
+		}else{
+			printf("Validation: Array not sorted\n");
+		}
+		printf("Ended program at: ");
+		print_current_time();	
+	}else{
+		printf("%s, %s, %d, #, %06f, %06f, ", sort_type, argv[2], number_of_iterations, average_cpu_time_used, total_copying_time);
+		print_current_time();
+	}
 	return 0;
 }
 
@@ -536,7 +815,7 @@ void print_current_time(){
 	t = time(NULL);
 	tm_struct = localtime(&t);	
 	gettimeofday(&tval_now, NULL); 	
-	printf("%2d:%2d:%2d", tm_struct->tm_hour, tm_struct->tm_min, tm_struct->tm_sec);
+	printf("%02d:%02d:%02d", tm_struct->tm_hour, tm_struct->tm_min, tm_struct->tm_sec);
 	printf(":%06ld\n", tval_now.tv_usec);
 }
 

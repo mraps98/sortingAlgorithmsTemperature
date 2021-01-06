@@ -3,7 +3,6 @@
 #include <string.h>
 #include <time.h>
 #include <limits.h>
-#include "quick.h"
 #include "quickt.h"
 
 long get_num_duplicates(duplicates_t* a, int n);
@@ -157,7 +156,7 @@ int main(int argc, char* argv[]){
 long get_num_duplicates(duplicates_t* a, int n){
     long i;
     unsigned long num_duplicates = 0;
-    quick_sortt(a, 0, n -1);
+    quick_sort(a, 0, n -1);
     for(i = 0; i < n; i++){
 		if(a[i].element == a[i+1].element){
 			num_duplicates++;

@@ -53,7 +53,7 @@ int main(int argc, char* argv[]){
 	double total_cpu_time_used = 0;
 	double total_copying_time = 0;
 	unsigned int number_of_iterations = 1;
-	const bool debug_mode = false;
+	const bool debug_mode = true;
 
 
 	if(argc < 3){
@@ -735,8 +735,7 @@ int main(int argc, char* argv[]){
 			tree_sort(data, number_of_items);
 			end = clock();
 			if(debug_mode){
-				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
-				printf("Stopped iteration %d of sorting data at ", i+1	);
+				printf("Stopped iteration %d of sorting data at ", i+1);
 				print_current_time();
 				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 			}else{

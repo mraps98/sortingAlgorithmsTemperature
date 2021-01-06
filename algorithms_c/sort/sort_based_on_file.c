@@ -53,7 +53,7 @@ int main(int argc, char* argv[]){
 	double total_cpu_time_used = 0;
 	double total_copying_time = 0;
 	unsigned int number_of_iterations = 1;
-	const bool debug_mode = true;
+	const bool debug_mode = false;
 
 
 	if(argc < 3){

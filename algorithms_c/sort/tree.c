@@ -1,7 +1,7 @@
 /* Source: https://iq.opengenus.org/tree-sort/  */
 #include <stdlib.h>
 #include "tree.h"
-long index = 0;
+long my_index = 0;
 struct btreenode
 {
     struct btreenode *leftchild ;
@@ -41,8 +41,8 @@ static void inorder ( struct btreenode *sr, long* arr)
     if (sr!=NULL)
     {
         inorder(sr->leftchild, arr);
-	arr[index] = sr->data;
-	index++;
+	arr[my_index] = sr->data;
+	my_index++;
         inorder(sr->rightchild, arr);
     }
 }

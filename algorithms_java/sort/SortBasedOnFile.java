@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 public class SortBasedOnFile{
 		
 	/* Declare Variables */
-	private static long numberOfItems;
+	private static int numberOfItems;
 	private static long dataOriginal[];
 	private static long data[];
 	private static String sortType;
@@ -13,8 +13,8 @@ public class SortBasedOnFile{
 	private static int numberOfIterations;
 	private static final boolean DEBUG_MODE = false;
 
-	private static long getNumberOfItemsInFile(){
-		long itemCount = 0;
+	private static int  getNumberOfItemsInFile(){
+		int itemCount = 0;
 		try{
 			File file = new File(fileName);
 			Scanner in = new Scanner(file);
@@ -32,10 +32,14 @@ public class SortBasedOnFile{
 
 	private static void loadDataFromFile(){
 		try{
+			data = new long[numberOfItems];
+			dataOriginal = new long[numberOfItems];
 			File file = new File(fileName);
 			Scanner in = new Scanner(file);
+			int i = 0;
 			while(in.hasNextLine()){
 				data[i] = in.nextLong();
+				i++;
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -45,7 +49,7 @@ public class SortBasedOnFile{
 	public static void main(String[] args){
 
 		/* If haven't specified required commandline arguments */
-		if(args.length < 3){
+		if(args.length < 2){
 			System.out.println("Usage SortbasedOnFile <sort_type> <file_name> <iterations?>");
 			System.exit(-1);	
 		}

@@ -19,6 +19,7 @@ public class SortBasedOnFile{
 			File file = new File(fileName);
 			Scanner in = new Scanner(file);
 			while(in.hasNextLine()){
+				in.nextLine();
 				itemCount++;
 			}
 			in.close();

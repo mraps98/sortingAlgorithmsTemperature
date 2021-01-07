@@ -1,30 +1,23 @@
-/* Reference: https://github.com/caisah/Sedgewick-algorithms-in-c-exercises-and-examples/blob/master/06-elementary_sorting_methods/6.02-selection_sort/examples/prog-6.2-selection_sort.c */
+/* Source: https://algs4.cs.princeton.edu/21elementary/Selection.java.html */
 public class Selection{
-	private static boolean less(long A, long B){
-		return (A < B);
+	private static boolean less(Comparable v, Comparable w){
+		return (v.compareTo(w) < 0);
 	}
 	
-	private static void exch(long[] a, int i, int j){
-		long t = a[i];
+	private static void exch(Comparable[] a, int i, int j){
+		Comparable swap = a[i];
 		a[i] = a[j];
-		a[j] = t;
+		a[j] = swap;
 	}
 	
-	private static void compexch(long[] a, int i, int j){
-		if(less(a[j], a[i])){
-			exch(a, i, j);
-		}
-	}
-
-	public static void selection_sort(long a[], int l, int r){
-		for (int i = l; i <r; i++){
-			int min = i;
-			for(int j = i + 1; j <= r; j++){
-				if(less(a[j], a[min])){
-					min = j;
-				}
-			}
-			exch(a, i, min);
-		}
-	}
+	public static void selectionSort(Comparable[] a) {
+        int n = a.length;
+        for (int i = 0; i < n; i++) {
+            int min = i;
+            for (int j = i+1; j < n; j++) {
+                if (less(a[j], a[min])) min = j;
+            }
+            exch(a, i, min);
+        }
+    }
 }

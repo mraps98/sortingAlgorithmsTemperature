@@ -1,5 +1,5 @@
 ./*.class: ./*.java
-	javac Insertion.java Merge.java Quick.java Selection.java Shell.java SortBasedOnFile.java
+	javac -Xlint:unchecked Selection.java SortBasedOnFile.java
 
 clean:
 	rm -f *.class

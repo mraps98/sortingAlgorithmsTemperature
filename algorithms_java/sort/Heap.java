@@ -45,7 +45,7 @@ public class Heap{
 		}
 	}
 
-	public static void heap_sort(long a[], int l, int r)
+	public static void heapSort(long a[], int l, int r)
 	{
 		for(int k = N/2; k >= 1; k--){
 			sink(k, N);

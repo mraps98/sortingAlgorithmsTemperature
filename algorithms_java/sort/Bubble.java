@@ -18,7 +18,7 @@ public class Bubble{
 		}
 	}
 
-	public static void bubble_sort(long a[], int l, int r){
+	public static void bubbleSort(long a[], int l, int r){
 		for(int i = l; i < r; i++){
 			for(int j = r; j > i; j--){
 				compexch(a, j-1, j);

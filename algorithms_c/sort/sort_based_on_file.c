@@ -107,7 +107,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -132,7 +132,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -157,7 +157,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -182,7 +182,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -207,7 +207,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -232,7 +232,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -257,7 +257,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -282,7 +282,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -307,7 +307,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -332,7 +332,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -357,7 +357,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -382,7 +382,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -407,7 +407,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -432,7 +432,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -457,7 +457,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -482,7 +482,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -507,7 +507,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -532,7 +532,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -557,7 +557,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -582,7 +582,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -606,7 +606,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -631,7 +631,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -656,7 +656,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -666,10 +666,10 @@ int main(int argc, char* argv[]){
 			if(debug_mode){
 				printf("Stopped iteration %d of sorting data at ", i+1);
 				print_current_time();	
-				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 			}else{
 				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "shell") == 0){
@@ -680,7 +680,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -690,10 +690,10 @@ int main(int argc, char* argv[]){
 			if(debug_mode){
 				printf("Stopped iteration %d of sorting data at ", i+1);
 				print_current_time();	
-				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 			}else{
 				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "stooge") == 0){
@@ -704,7 +704,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -714,10 +714,10 @@ int main(int argc, char* argv[]){
 			if(debug_mode){
 				printf("Stopped iteration %d of sorting data at ", i+1);
 				print_current_time();
-				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 			}else{
 				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "tim") == 0){
@@ -728,7 +728,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -738,10 +738,10 @@ int main(int argc, char* argv[]){
 			if(debug_mode){
 				printf("Stopped iteration %d of sorting data at ", i+1);
 				print_current_time();
-				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 			}else{
 				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else if(strcmp(sort_type, "tree") == 0){
@@ -752,7 +752,7 @@ int main(int argc, char* argv[]){
 			end = clock();
 			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;;
 			if(debug_mode){
-				printf("Time taken to copy data_original to data: %06f", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 				printf("Started iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}
@@ -762,10 +762,10 @@ int main(int argc, char* argv[]){
 			if(debug_mode){
 				printf("Stopped iteration %d of sorting data at ", i+1);
 				print_current_time();
-				total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 			}else{
 				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
 		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
 	}else{
@@ -773,8 +773,6 @@ int main(int argc, char* argv[]){
 		return -1;
 	}	
 		
-	free(data);
-	free(data_original);
 	
 	if(debug_mode){
 		printf("Total time taken for %d iterations is %f seconds\n", number_of_iterations, total_cpu_time_used);
@@ -790,6 +788,11 @@ int main(int argc, char* argv[]){
 		printf("%s, %s, %d, #, %06f, %06f, ", sort_type, argv[2], number_of_iterations, average_cpu_time_used, total_copying_time);
 		print_current_time();
 	}
+
+	
+	free(data);
+	free(data_original);
+
 	return 0;
 }
 

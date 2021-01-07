@@ -19,7 +19,6 @@ public class SortBasedOnFile{
 			File file = new File(fileName);
 			Scanner in = new Scanner(file);
 			while(in.hasNextLine()){
-				in.nextLine();
 				itemCount++;
 			}
 			in.close();
@@ -47,6 +46,34 @@ public class SortBasedOnFile{
 		}
 	}
 
+	private static void copyDataFromOriginal(){
+		for(int i = 0; i < numberOfItems; i++){
+			data[i] = dataOriginal[i];	
+		}
+	}
+	
+	private static int isArraySorted(long s[], int n) {
+		int a = 1, d = 1, i = 0;
+
+		while ((a == 1 || d == 1) && i < n - 1) {
+		if (s[i] < s[i+1])
+			d = 0;
+		else if (s[i] > s[i+1])
+			a = 0;
+			i++;
+		}
+
+		if (a == 1)
+			return 1;
+		else if (d == 1)
+			return 2;
+		else
+			return 0;
+	}
+	
+		
+	
+
 	public static void main(String[] args){
 
 		/* If haven't specified required commandline arguments */
@@ -66,5 +93,20 @@ public class SortBasedOnFile{
 
 		numberOfItems = getNumberOfItemsInFile();
 		System.out.println("Number of items = " + numberOfItems);
+
+		switch(sortType){
+			case "bubble":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					Bubble.bubbleSort(data, 0, numberOfItems-1);
+				}
+			break;
+		}
+
+		if(isArraySorted(data, numberOfItems) == 1){
+			System.out.println("Array has been sorted"); 
+		}else{
+			System.out.println("Array has not been sorted");
+		}
 	}
 }

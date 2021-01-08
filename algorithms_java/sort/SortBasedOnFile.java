@@ -13,7 +13,7 @@ public class SortBasedOnFile{
 	private static String sortType;
 	private static String fileName;
 	private static int numberOfIterations;
-	private static final boolean DEBUG_MODE = false;
+	private static final boolean DEBUG_MODE = true;
 	private static double start, end, totalCpuTime, averageCpuTime, totalCopyingTime;
 	
 	private static boolean less(Comparable v, Comparable w){
@@ -137,6 +137,26 @@ public class SortBasedOnFile{
 
 		/* Sort based on type */
 		switch(sortType){
+			case "heap":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					Heap.heapSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
 			case "insertion":
 				for(int i = 0; i < numberOfIterations; i++){
 					copyDataFromOriginal();	
@@ -157,8 +177,109 @@ public class SortBasedOnFile{
 					totalCpuTime += ((end - start) / 1000000000);
 				}
 			break;
+			case "merge":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					Merge.mergeSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
+			case "mergebu":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					MergeBu.mergeSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
+			case "quick":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					Quick.quickSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
+			case "selection":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					Selection.selectionSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
+			case "shell":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					Shell.shellSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
 			default:
 				System.out.println("Incorrect sortType entered");
+				System.exit(-1);
 		}
 			
 		averageCpuTime = totalCpuTime / numberOfIterations;

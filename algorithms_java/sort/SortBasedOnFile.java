@@ -217,6 +217,66 @@ public class SortBasedOnFile{
 					totalCpuTime += ((end - start) / 1000000000);
 				}
 			break;
+			case "comb":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					Comb.combSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
+			case "cycle":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					Cycle.cycleSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
+			case "gnome":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					Gnome.gnomeSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
 			case "heap":
 				for(int i = 0; i < numberOfIterations; i++){
 					copyDataFromOriginal();	
@@ -306,6 +366,26 @@ public class SortBasedOnFile{
 						printCurrentTime();
 					}
 					Quick.quickSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
+			case "radix":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					Radix.radixSort(data, numberOfItems);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
 							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));

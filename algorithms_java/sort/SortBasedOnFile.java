@@ -1,6 +1,8 @@
-import java.io.File;
+import java.io.FileReader;
+import java.io.BufferedReader;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class SortBasedOnFile{
 		
@@ -12,6 +14,7 @@ public class SortBasedOnFile{
 	private static String fileName;
 	private static int numberOfIterations;
 	private static final boolean DEBUG_MODE = false;
+	private static double start, end, totalCpuTime, averageCpuTime, totalCopyingTime;
 	
 	private static boolean less(Comparable v, Comparable w){
 		return (v.compareTo(w) < 0);
@@ -21,45 +24,57 @@ public class SortBasedOnFile{
 		Comparable swap = a[i];
 		a[i] = a[j];
 		a[j] = swap;
+		swap = null;
 	}
 
 	private static int getNumberOfItemsInFile(){
 		int itemCount = 0;
 		try{
-			File file = new File(fileName);
-			Scanner in = new Scanner(file);
-			while(in.hasNextLine()){
+			BufferedReader reader = new BufferedReader(new FileReader(fileName));
+			while(reader.readLine() != null){
 				itemCount++;
 			}
-			in.close();
 		}catch(FileNotFoundException e){
 			System.out.println("File not found");
 			e.printStackTrace();
 			System.exit(-1);
+		}catch(IOException e){
+			e.printStackTrace();
 		}
 		return itemCount;
 	}
 
 	private static void loadDataFromFile(){
 		try{
-			data = new Long[numberOfItems];
 			dataOriginal = new Long[numberOfItems];
-			File file = new File(fileName);
-			Scanner in = new Scanner(file);
-			int i = 0;
-			while(in.hasNextLine()){
-				data[i] = in.nextLong();
-				in.nextLine();
-				i++;
+			data = new Long[numberOfItems];
+			BufferedReader reader = new BufferedReader(new FileReader(fileName));
+
+			String line = reader.readLine();
+			int itemCount = 0;
+			while(line != null){
+				dataOriginal[itemCount] = Long.parseLong(line);
+				itemCount++;
+				line = reader.readLine();
 			}
-		}catch(Exception e){
+		}catch(FileNotFoundException e){
+			System.out.println("File not found");
+			e.printStackTrace();
+			System.exit(-1);
+		}catch(IOException e){
 			e.printStackTrace();
 		}
 	}
 
 	private static void copyDataFromOriginal(){
+		start = System.nanoTime();
 		for(int i = 0; i < numberOfItems; i++){
 			data[i] = dataOriginal[i];	
+		}
+		end = System.nanoTime();
+		totalCopyingTime += (end - start) / 100000000;
+		if(DEBUG_MODE){
+			System.out.printf("Time taken to copy dataOriginal to data: %f\n", (end - start) / 1000000);
 		}
 	}
 	
@@ -72,12 +87,17 @@ public class SortBasedOnFile{
         for (int i = lo + 1; i <= hi; i++)
             if (less(a[i], a[i-1])) return false;
         return true;
-    }	
-		
-	
+    }
+
+	private static void printCurrentTime(){
+		System.out.println(java.time.LocalTime.now());
+	}
 
 	public static void main(String[] args){
-
+		if(DEBUG_MODE){
+			System.out.print("Started program at: ");
+			printCurrentTime();
+		}
 		/* If haven't specified required commandline arguments */
 		if(args.length < 2){
 			System.out.println("Usage SortbasedOnFile <sort_type> <file_name> <iterations?>");
@@ -87,36 +107,78 @@ public class SortBasedOnFile{
 		/* Get command line arguments */
 		sortType = args[0];
 		fileName = args[1];
-		if(args.length == 4){
-			numberOfIterations = Integer.parseInt(args[1]);
+		if(args.length == 3){
+			numberOfIterations = Integer.parseInt(args[2]);
 		}else{
 			numberOfIterations = 1;
 		}
-
-		numberOfItems = getNumberOfItemsInFile();
-		System.out.println("Number of items = " + numberOfItems);
-
-		for(int i = 0; i < numberOfItems; i++){
-			System.out.println(dataOriginal[i]);	
+		
+		if(DEBUG_MODE){
+			System.out.printf("Sort type = %s and number of items is %d and number of iterations is %d\n", sortType, numberOfItems, numberOfIterations);
+		}else{
+			System.out.printf("%s, %s, %d, *, ", sortType, fileName, numberOfIterations);
+			printCurrentTime();
 		}
 
+		/* Get number of items in file */
+		numberOfItems = getNumberOfItemsInFile();
+
+		if(DEBUG_MODE){
+			System.out.print("Started loading data at: ");
+			printCurrentTime();
+		}
+		/* Load data from file to long array */
+		loadDataFromFile();
+
+		if(DEBUG_MODE){
+			System.out.print("Ended loading data at: ");
+			printCurrentTime();
+		}
+
+		/* Sort based on type */
 		switch(sortType){
 			case "insertion":
 				for(int i = 0; i < numberOfIterations; i++){
-					//copyDataFromOriginal();	
-		//			Insertion.insertionSort(data);
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					Insertion.insertionSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
 				}
 			break;
 			default:
 				System.out.println("Incorrect sortType entered");
 		}
+			
+		averageCpuTime = totalCpuTime / numberOfIterations;
+		
 
-		if(isSorted(data)){
-			System.out.println("Array has been sorted"); 
+		if(DEBUG_MODE){
+			System.out.printf("total time taken for %d iterations is %f seconds\n", numberOfIterations, totalCpuTime);
+			System.out.printf("Average time taken for %d iterations is %f seconds\n", numberOfIterations, averageCpuTime);
+			if(isSorted(data)){
+				System.out.println("Validation: Array has been sorted"); 
+			}else{
+				System.out.println("Validation: Array has not been sorted");
+			}
+			System.out.printf("Ended program at: ");
+			printCurrentTime();
 		}else{
-			System.out.println("Array has not been sorted");
-		}
-
+			System.out.printf("%s, %s, %d, #, %f, %f, ", sortType, fileName, numberOfIterations, averageCpuTime, totalCopyingTime);
+			printCurrentTime();
+		}	
+		
 		data = null;
 		dataOriginal = null;
 	}

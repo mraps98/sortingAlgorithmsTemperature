@@ -1,28 +1,30 @@
-/* Reference: https://github.com/caisah/Sedgewick-algorithms-in-c-exercises-and-examples/blob/master/06-elementary_sorting_methods/6.04-bubble_sort/examples/prog_6.4-bubble_sort.c*/
+/* Reference: https://github.com/caisah/Sedgewick-algorithms-in-c-exercises-and-examples/blob/master/06-elementary_bubbleSorting_methods/6.04-bubble_bubbleSort/examples/prog_6.4-bubble_bubbleSort.c*/
+/* Second reference: https://github.com/TheAlgorithms/Java/blob/master/Sorts/BubbleSort.java */
 
 public class Bubble{
-	
-	private static boolean less(long A, long B){
-		return (A < B);
-	}
-	
-	private static void exch(long[] a, int i, int j){
-		long t = a[i];
-		a[i] = a[j];
-		a[j] = t;
-	}
-	
-	private static void compexch(long[] a, int i, int j){
-		if(less(a[j], a[i])){
-			exch(a, i, j);
-		}
+	private static boolean less(Comparable v, Comparable w){
+		return (v.compareTo(w) < 0);
 	}
 
-	public static void bubbleSort(long a[], int l, int r){
-		for(int i = l; i < r; i++){
-			for(int j = r; j > i; j--){
-				compexch(a, j-1, j);
-			}
-		}
+	private static void exch(Comparable[] a, int i, int j){
+		Comparable exch = a[i];
+		a[i] = a[j];
+		a[j] = exch;
 	}
+
+	public static <T extends Comparable<T>> T[] bubbleSort(T[] array) {
+    for (int i = 0, size = array.length; i < size - 1; ++i) {
+      boolean exchped = false;
+      for (int j = 0; j < size - 1 - i; ++j) {
+        if (!less(array[j], array[j + 1])) {
+          exch(array, j, j + 1);
+          exchped = true;
+        }
+      }
+      if (!exchped) {
+        break;
+      }
+    }
+    return array;
+  }
 }

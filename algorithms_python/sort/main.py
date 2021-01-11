@@ -8,6 +8,9 @@ from cocktail import cocktailSort
 from comb import combSort
 from cycle import cycleSort
 from gnome import gnomeSort
+from heap import heapSort
+from insertion import insertionSort
+from merge import mergeSort
 
 # Declaring variables
 fileName = ""
@@ -181,6 +184,54 @@ def main():
 				printCurrentTime()
 			start = time.time()
 			gnomeSort(data)	
+			end = time.time()
+			totalCpuTime = totalCpuTime + (end - start)
+			if DEBUG_MODE:
+				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+	elif(sortType == "heap"):
+		for i in range(numberOfIterations):
+			copyList()
+			if not DEBUG_MODE:
+				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				printCurrentTime()
+			else:
+				print("Started iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+			start = time.time()
+			heapSort(data)	
+			end = time.time()
+			totalCpuTime = totalCpuTime + (end - start)
+			if DEBUG_MODE:
+				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+	elif(sortType == "insertion"):
+		for i in range(numberOfIterations):
+			copyList()
+			if not DEBUG_MODE:
+				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				printCurrentTime()
+			else:
+				print("Started iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+			start = time.time()
+			insertionSort(data)	
+			end = time.time()
+			totalCpuTime = totalCpuTime + (end - start)
+			if DEBUG_MODE:
+				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+	elif(sortType == "merge"):
+		for i in range(numberOfIterations):
+			copyList()
+			if not DEBUG_MODE:
+				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				printCurrentTime()
+			else:
+				print("Started iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+			start = time.time()
+			data = mergeSort(data)	
 			end = time.time()
 			totalCpuTime = totalCpuTime + (end - start)
 			if DEBUG_MODE:

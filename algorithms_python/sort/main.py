@@ -27,7 +27,8 @@ def main():
 
     #Get Commandline arguments
     if len(sys.argv) < 3:
-        print("Usage {}, <sortType> <fileName> <numberOfIterations>".format(sys.argv[0]))
+        print("Usage python(3) {}, <sortType> <fileName> <numberOfIterations>".format(sys.argv[0]))
+        return
     else:
         fileName = sys.argv[2] 
         sortType = sys.argv[1]

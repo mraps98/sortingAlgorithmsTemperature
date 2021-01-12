@@ -178,7 +178,7 @@ public class SortBasedOnFile{
 					totalCpuTime += ((end - start) / 1000000000);
 				}
 			break;
-			case "bubbleRec":
+			case "bubble_rec":
 				for(int i = 0; i < numberOfIterations; i++){
 					copyDataFromOriginal();	
 					start = System.nanoTime();
@@ -327,6 +327,26 @@ public class SortBasedOnFile{
 						printCurrentTime();
 					}
 					Insertion.insertionSort(data);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
+			case "insertion_rec":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					InsertionRec.insertionRecSort(data, numberOfItems);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
 							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));

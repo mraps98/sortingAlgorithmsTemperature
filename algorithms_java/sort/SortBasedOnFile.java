@@ -186,7 +186,7 @@ public class SortBasedOnFile{
 						System.out.printf("Started iteration %d of sorting data at ", i+1);
 						printCurrentTime();
 					}
-					BubbleRec.bubbleSort(data);
+					BubbleRec.bubbleSort(data, numberOfItems, 0, 0);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
 							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));

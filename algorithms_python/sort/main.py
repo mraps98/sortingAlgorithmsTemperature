@@ -4,6 +4,7 @@ from datetime import datetime
 
 # import sorts
 from bead import beadSort
+from binsertion import binsertionSort 
 from bogo import bogoSort
 from bubble import bubbleSort
 from bubble_rec import bubbleRecSort
@@ -131,6 +132,22 @@ def main():
 				printCurrentTime()
 			start = time.time()
 			data = beadSort(data)	
+			end = time.time()
+			totalCpuTime = totalCpuTime + (end - start)
+			if DEBUG_MODE:
+				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+	elif(sortType == "binsertion"):
+		for i in range(numberOfIterations):
+			copyList()
+			if not DEBUG_MODE:
+				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				printCurrentTime()
+			else:
+				print("Started iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+			start = time.time()
+			data = binsertionSort(data)	
 			end = time.time()
 			totalCpuTime = totalCpuTime + (end - start)
 			if DEBUG_MODE:
@@ -429,7 +446,7 @@ def main():
 		return
 		
 	#Check if sorted
-	print(isSorted(data))
+	#print(isSorted(data))
 
 	averageCpuTime = totalCpuTime / numberOfIterations
 	if not DEBUG_MODE:

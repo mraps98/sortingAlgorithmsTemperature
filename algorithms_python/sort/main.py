@@ -6,12 +6,14 @@ from datetime import datetime
 from bead import beadSort
 from bogo import bogoSort
 from bubble import bubbleSort
+from bubble_rec import bubbleRecSort
 from cocktail import cocktailSort
 from comb import combSort
 from cycle import cycleSort
 from gnome import gnomeSort
 from heap import heapSort
 from insertion import insertionSort
+from insertion_rec import insertionRecSort
 from merge import mergeSort
 from pancake import pancakeSort
 from quick import quickSort
@@ -166,6 +168,22 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
+	elif(sortType == "bubble_rec"):
+		for i in range(numberOfIterations):
+			copyList()
+			if not DEBUG_MODE:
+				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				printCurrentTime()
+			else:
+				print("Started iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+			start = time.time()
+			bubbleRecSort(data)	
+			end = time.time()
+			totalCpuTime = totalCpuTime + (end - start)
+			if DEBUG_MODE:
+				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
 	elif(sortType == "cocktail"):
 		for i in range(numberOfIterations):
 			copyList()
@@ -257,6 +275,22 @@ def main():
 				printCurrentTime()
 			start = time.time()
 			insertionSort(data)	
+			end = time.time()
+			totalCpuTime = totalCpuTime + (end - start)
+			if DEBUG_MODE:
+				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+	elif(sortType == "insertion_rec"):
+		for i in range(numberOfIterations):
+			copyList()
+			if not DEBUG_MODE:
+				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				printCurrentTime()
+			else:
+				print("Started iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+			start = time.time()
+			insertionRecSort(data, len(data))	
 			end = time.time()
 			totalCpuTime = totalCpuTime + (end - start)
 			if DEBUG_MODE:

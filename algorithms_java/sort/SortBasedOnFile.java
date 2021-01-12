@@ -117,7 +117,7 @@ public class SortBasedOnFile{
 		if(DEBUG_MODE){
 			System.out.printf("Sort type = %s and number of items is %d and number of iterations is %d\n", sortType, numberOfItems, numberOfIterations);
 		}else{
-			System.out.printf("%s, %s, %d, *, ", sortType, fileName, numberOfIterations);
+			System.out.printf("java, %s, %s, %d, *, ", sortType, fileName, numberOfIterations);
 			printCurrentTime();
 		}
 
@@ -149,7 +149,7 @@ public class SortBasedOnFile{
 					Bogo.bogoSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -169,7 +169,7 @@ public class SortBasedOnFile{
 					Bubble.bubbleSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -189,7 +189,7 @@ public class SortBasedOnFile{
 					BubbleRec.bubbleSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -209,7 +209,7 @@ public class SortBasedOnFile{
 					BinaryInsertion.binsertionSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -229,7 +229,7 @@ public class SortBasedOnFile{
 					Cocktail.cocktailSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -249,7 +249,7 @@ public class SortBasedOnFile{
 					Comb.combSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -269,7 +269,7 @@ public class SortBasedOnFile{
 					Cycle.cycleSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -289,7 +289,7 @@ public class SortBasedOnFile{
 					Gnome.gnomeSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -309,7 +309,7 @@ public class SortBasedOnFile{
 					Heap.heapSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -329,7 +329,7 @@ public class SortBasedOnFile{
 					Insertion.insertionSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -349,7 +349,7 @@ public class SortBasedOnFile{
 					InsertionRec.insertionRecSort(data, numberOfItems);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -369,7 +369,7 @@ public class SortBasedOnFile{
 					Merge.mergeSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -389,7 +389,27 @@ public class SortBasedOnFile{
 					MergeBu.mergeSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+					}else{
+						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+						System.out.printf("Time taken for %dth iteration: %f\n", i+1, ((end -  start) / 1000000000));
+					}
+					totalCpuTime += ((end - start) / 1000000000);
+				}
+			break;
+			case "pancake":
+				for(int i = 0; i < numberOfIterations; i++){
+					copyDataFromOriginal();	
+					start = System.nanoTime();
+					if(DEBUG_MODE){
+						System.out.printf("Started iteration %d of sorting data at ", i+1);
+						printCurrentTime();
+					}
+					Pancake.pancakeSort(data, numberOfItems);
+					end = System.nanoTime();
+					if(!DEBUG_MODE){
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -409,7 +429,7 @@ public class SortBasedOnFile{
 					Quick.quickSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -429,7 +449,7 @@ public class SortBasedOnFile{
 					Radix.radixSort(data, numberOfItems);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -449,7 +469,7 @@ public class SortBasedOnFile{
 					Selection.selectionSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -469,7 +489,7 @@ public class SortBasedOnFile{
 					Shell.shellSort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -489,7 +509,7 @@ public class SortBasedOnFile{
 					Arrays.sort(data);
 					end = System.nanoTime();
 					if(!DEBUG_MODE){
-							System.out.printf("%s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
+							System.out.printf("java, %s, %s, %d, %d/%d, %f\n", sortType, fileName, numberOfIterations, i+1, numberOfIterations, ((end - start) / 1000000000));
 					}else{
 						System.out.printf("Stopped iteration %d of sorting data at ", i+1);
 						printCurrentTime();
@@ -517,7 +537,7 @@ public class SortBasedOnFile{
 			System.out.printf("Ended program at: ");
 			printCurrentTime();
 		}else{
-			System.out.printf("%s, %s, %d, #, %f, %f, ", sortType, fileName, numberOfIterations, averageCpuTime, totalCopyingTime);
+			System.out.printf("java, %s, %s, %d, #, %f, %f, ", sortType, fileName, numberOfIterations, averageCpuTime, totalCopyingTime);
 			printCurrentTime();
 		}	
 		

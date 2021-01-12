@@ -16,6 +16,7 @@ from heap import heapSort
 from insertion import insertionSort
 from insertion_rec import insertionRecSort
 from merge import mergeSort
+from mergebu import mergebuSort
 from pancake import pancakeSort
 from quick import quickSort
 from radix import radixSort
@@ -324,6 +325,22 @@ def main():
 				printCurrentTime()
 			start = time.time()
 			data = mergeSort(data)	
+			end = time.time()
+			totalCpuTime = totalCpuTime + (end - start)
+			if DEBUG_MODE:
+				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+	elif(sortType == "mergebu"):
+		for i in range(numberOfIterations):
+			copyList()
+			if not DEBUG_MODE:
+				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				printCurrentTime()
+			else:
+				print("Started iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+			start = time.time()
+			data = mergebuSort(data)	
 			end = time.time()
 			totalCpuTime = totalCpuTime + (end - start)
 			if DEBUG_MODE:

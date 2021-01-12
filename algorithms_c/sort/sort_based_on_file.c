@@ -19,6 +19,7 @@
 #include "insertion.h"
 #include "insertion_rec.h"
 #include "merge.h"
+#include "mergebu.h"
 #include "pancake.h"
 #include "partition.h"
 #include "pigeonhole.h"
@@ -463,6 +464,31 @@ int main(int argc, char* argv[]){
 			}
 			start = clock();
 			merge_sort(data, number_of_items);
+			end = clock();
+			if(debug_mode){
+				printf("Stopped iteration %d of sorting data at ", i+1);
+				print_current_time();	
+				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}else{
+				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+			}
+			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
+		}
+		average_cpu_time_used = total_cpu_time_used / number_of_iterations;
+	}else if(strcmp(sort_type, "mergebu") == 0){
+		int i;
+		for(i = 0; i < number_of_iterations; i++){
+			start = clock();
+			acpy(data, data_original,  number_of_items);
+			end = clock();
+			total_copying_time += ((double) (end - start)) / CLOCKS_PER_SEC;
+			if(debug_mode){
+				printf("Time taken to copy data_original to data: %06f\n", ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("Started iteration %d of sorting data at ", i+1);
+				print_current_time();
+			}
+			start = clock();
+			mergebu_sort(data, 0, number_of_items-1);
 			end = clock();
 			if(debug_mode){
 				printf("Stopped iteration %d of sorting data at ", i+1);

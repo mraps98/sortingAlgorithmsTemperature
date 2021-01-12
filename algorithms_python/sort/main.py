@@ -95,6 +95,8 @@ def main():
 	# Global variables
 	global fileName, sortType, numberOfIterations, data, dataOriginal, DEBUG_MODE, totalCpuTime, averageCpuTime
 
+
+
 	if DEBUG_MODE:
 		print("Started program at: ", end="")
 		printCurrentTime()
@@ -113,7 +115,7 @@ def main():
 	getNumItemsInFile()
 
 	if not DEBUG_MODE:
-		print("{}, {}, {}, *, ".format(sortType, fileName, numberOfIterations), end="")
+		print("python, {}, {}, {}, *, ".format(sortType, fileName, numberOfIterations), end="")
 		printCurrentTime()
 	else:
 		print("Sort type = {} and number of items is {} and number of iterations is {}".format(sortType, numberOfItems, numberOfIterations))
@@ -121,12 +123,15 @@ def main():
     # Load data form file
 	readDataFromFile()
 
+	# SET RECURSION LIMIT
+	sys.setrecursionlimit(numberOfItems*10)
+
     # Sort based on sort type
 	if(sortType == "bead"):
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -142,7 +147,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -158,7 +163,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -174,7 +179,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -190,7 +195,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -206,7 +211,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -222,7 +227,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -238,7 +243,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -254,7 +259,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -270,7 +275,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -286,7 +291,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -302,7 +307,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -318,7 +323,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -334,7 +339,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -350,7 +355,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -366,7 +371,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -382,7 +387,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -398,7 +403,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -414,7 +419,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -430,7 +435,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -446,7 +451,7 @@ def main():
 		for i in range(numberOfIterations):
 			copyList()
 			if not DEBUG_MODE:
-				print("{}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 			else:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
@@ -467,7 +472,7 @@ def main():
 
 	averageCpuTime = totalCpuTime / numberOfIterations
 	if not DEBUG_MODE:
-		print("{}, {}, {}, #, {}, {}, ".format(sortType, fileName, numberOfIterations, averageCpuTime, round(totalCopyingTime, 10)), end="")
+		print("python, {}, {}, {}, #, {}, {}, ".format(sortType, fileName, numberOfIterations, averageCpuTime, round(totalCopyingTime, 10)), end="")
 		printCurrentTime()
 	else:
 		print("Total time taken for {} iterations is {} seconds".format(numberOfIterations, totalCpuTime))

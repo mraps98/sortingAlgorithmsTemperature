@@ -73,7 +73,7 @@ int main(int argc, char* argv[]){
 		print_current_time();
 		printf("Sort type = %s and number of items is %ld and number of iterations is %d\n", sort_type, number_of_items, number_of_iterations);
 	}else{
-		printf("%s, %s, %d, *, ", sort_type, argv[2], number_of_iterations);
+		printf("c, %s, %s, %d, *, ", sort_type, argv[2], number_of_iterations);
 		print_current_time();
 	}
 	
@@ -120,7 +120,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -145,7 +145,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -170,7 +170,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -195,7 +195,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -220,7 +220,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -245,7 +245,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -270,7 +270,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -295,7 +295,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -320,7 +320,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -345,7 +345,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -370,7 +370,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -395,7 +395,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -420,7 +420,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -445,7 +445,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -470,7 +470,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -495,7 +495,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -520,7 +520,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -545,7 +545,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -570,7 +570,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -595,7 +595,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -620,7 +620,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -645,7 +645,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -670,7 +670,7 @@ int main(int argc, char* argv[]){
 				print_current_time();	
 				printf("Time taken for %dth iteration: %f\n", i+1, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -694,7 +694,7 @@ int main(int argc, char* argv[]){
 				printf("Stopped iteration %d of sorting data at ", i+1);
 				print_current_time();	
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -718,7 +718,7 @@ int main(int argc, char* argv[]){
 				printf("Stopped iteration %d of sorting data at ", i+1);
 				print_current_time();	
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -742,7 +742,7 @@ int main(int argc, char* argv[]){
 				printf("Stopped iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -766,7 +766,7 @@ int main(int argc, char* argv[]){
 				printf("Stopped iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -790,7 +790,7 @@ int main(int argc, char* argv[]){
 				printf("Stopped iteration %d of sorting data at ", i+1);
 				print_current_time();
 			}else{
-				printf("%s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
+				printf("c, %s, %s, %d, %d/%d, %f\n", sort_type, argv[2], number_of_iterations, i+1, number_of_iterations, ((double) (end - start)) / CLOCKS_PER_SEC);
 			}
 			total_cpu_time_used += ((double) (end - start)) / CLOCKS_PER_SEC;
 		}
@@ -812,7 +812,7 @@ int main(int argc, char* argv[]){
 		printf("Ended program at: ");
 		print_current_time();	
 	}else{
-		printf("%s, %s, %d, #, %06f, %06f, ", sort_type, argv[2], number_of_iterations, average_cpu_time_used, total_copying_time);
+		printf("c, %s, %s, %d, #, %06f, %06f, ", sort_type, argv[2], number_of_iterations, average_cpu_time_used, total_copying_time);
 		print_current_time();
 	}
 

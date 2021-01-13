@@ -8,6 +8,6 @@ typedef struct duplicates{
     unsigned int flag;
 }duplicates_t;
 
-int partition(duplicates_t a[], int l, int r);
-void quick_sort(duplicates_t a[], int l, int r);
+int partitiont(duplicates_t a[], int l, int r);
+void quick_sortt(duplicates_t a[], int l, int r);
 #endif

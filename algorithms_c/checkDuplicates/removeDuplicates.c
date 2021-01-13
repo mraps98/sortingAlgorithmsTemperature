@@ -4,6 +4,7 @@
 #include <time.h>
 #include <limits.h>
 #include "quickt.h"
+#include "quick.h"
 
 long get_num_duplicates(duplicates_t* a, int n);
 void output_data_to_file(duplicates_t* data, unsigned long num_elements, char file_name[256]);
@@ -156,7 +157,7 @@ int main(int argc, char* argv[]){
 long get_num_duplicates(duplicates_t* a, int n){
     long i;
     unsigned long num_duplicates = 0;
-    quick_sort(a, 0, n -1);
+    quick_sortt(a, 0, n -1);
     for(i = 0; i < n; i++){
 		if(a[i].element == a[i+1].element){
 			num_duplicates++;

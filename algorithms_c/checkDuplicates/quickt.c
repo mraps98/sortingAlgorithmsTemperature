@@ -8,7 +8,7 @@
 #define less(A, B) (key(A) < key(B))
 #define exch(A, B) {duplicates_t t = A;  A = B; B = t;}
 
-int partition(duplicates_t a[], int l, int r)
+int partitiont(duplicates_t a[], int l, int r)
 {
   int i = l-1, j = r;
   duplicates_t v = a[r];
@@ -28,13 +28,13 @@ int partition(duplicates_t a[], int l, int r)
   return i;
 }
 
-void quick_sort(duplicates_t a[],  int l, int r)     
+void quick_sortt(duplicates_t a[],  int l, int r)     
 {
   int i;
 
   if (r <= l)
     return;
-  i = partition(a, l, r);
-  quick_sort(a, l, i-1);
-  quick_sort(a, i+1, r);
+  i = partitiont(a, l, r);
+  quick_sortt(a, l, i-1);
+  quick_sortt(a, i+1, r);
 }

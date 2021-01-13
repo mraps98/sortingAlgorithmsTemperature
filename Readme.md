@@ -1,6 +1,7 @@
 This project contains the following algorithms:
+NOTE: For java and c, make sure to run the make command first
 * generate a file with desired number of random numbers
-	* usage
+	* usage: generate_random_numbers_file.out <number_of_elements>
 * check number of duplicates in file of numbers
 	* checkDuplicates.out <file_name>
 * remove duplicates from file of numbers

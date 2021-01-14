@@ -36,6 +36,7 @@ DEBUG_MODE = False
 totalCopyingTime = 0
 totalCpuTime = 0
 averageCpuTime = 0
+totalProgramTime = 0
 
 def getNumItemsInFile():
 	global numberOfItems
@@ -92,8 +93,11 @@ def printCurrentTime():
 	print(now)
 
 def main():
+
+	programStart = time.time()
+
 	# Global variables
-	global fileName, sortType, numberOfIterations, data, dataOriginal, DEBUG_MODE, totalCpuTime, averageCpuTime
+	global fileName, sortType, numberOfIterations, data, dataOriginal, DEBUG_MODE, totalCpuTime, averageCpuTime, totalCopyingTime, totalProgramTime
 
 
 
@@ -470,9 +474,11 @@ def main():
 	#Check if sorted
 	#print(isSorted(data))
 
+	programEnd = time.time()
+	totalProgramTime = programEnd - programStart
 	averageCpuTime = totalCpuTime / numberOfIterations
 	if not DEBUG_MODE:
-		print("python, {}, {}, {}, #, {}, {}, ".format(sortType, fileName, numberOfIterations, averageCpuTime, round(totalCopyingTime, 10)), end="")
+		print("python, {}, {}, {}, #, {}, {:.10f}, {}, ".format(sortType, fileName, numberOfIterations, averageCpuTime, round(totalCopyingTime, 10), round(totalProgramTime, 10)), end="")
 		printCurrentTime()
 	else:
 		print("Total time taken for {} iterations is {} seconds".format(numberOfIterations, totalCpuTime))

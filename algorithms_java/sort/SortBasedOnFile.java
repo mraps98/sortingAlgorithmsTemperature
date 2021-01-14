@@ -15,7 +15,7 @@ public class SortBasedOnFile{
 	private static String fileName;
 	private static int numberOfIterations;
 	private static final boolean DEBUG_MODE = false;
-	private static double start, end, totalCpuTime, averageCpuTime, totalCopyingTime;
+	private static double start, end, programStart, programEnd, totalCpuTime, averageCpuTime, totalCopyingTime, totalProgramTime;
 	
 	private static boolean less(Comparable v, Comparable w){
 		return (v.compareTo(w) < 0);
@@ -75,7 +75,7 @@ public class SortBasedOnFile{
 		end = System.nanoTime();
 		totalCopyingTime += (end - start) / 100000000;
 		if(DEBUG_MODE){
-			System.out.printf("Time taken to copy dataOriginal to data: %f\n", (end - start) / 1000000);
+			System.out.printf("Time taken to copy dataOriginal to data: %f\n", (end - start) / 1000000000);
 		}
 	}
 	
@@ -95,6 +95,7 @@ public class SortBasedOnFile{
 	}
 
 	public static void main(String[] args){
+		programStart = System.nanoTime();
 		if(DEBUG_MODE){
 			System.out.print("Started program at: ");
 			printCurrentTime();
@@ -524,7 +525,9 @@ public class SortBasedOnFile{
 		}
 			
 		averageCpuTime = totalCpuTime / numberOfIterations;
-		
+		programEnd = System.nanoTime();
+
+		totalProgramTime = (programEnd - programStart ) / 1000000000;
 
 		if(DEBUG_MODE){
 			System.out.printf("total time taken for %d iterations is %f seconds\n", numberOfIterations, totalCpuTime);
@@ -537,7 +540,7 @@ public class SortBasedOnFile{
 			System.out.printf("Ended program at: ");
 			printCurrentTime();
 		}else{
-			System.out.printf("java, %s, %s, %d, #, %f, %f, ", sortType, fileName, numberOfIterations, averageCpuTime, totalCopyingTime);
+			System.out.printf("java, %s, %s, %d, #, %f, %f, %f, ", sortType, fileName, numberOfIterations, averageCpuTime, totalCopyingTime, totalProgramTime);
 			printCurrentTime();
 		}	
 		

@@ -51,12 +51,15 @@ int main(int argc, char* argv[]){
 	unsigned int count = 0;
 	char sort_type[20];
 	clock_t start, end;
+	clock_t program_start, program_end;
 	double average_cpu_time_used = 0;
 	double total_cpu_time_used = 0;
 	double total_copying_time = 0;
+	double total_program_time = 0;
 	unsigned int number_of_iterations = 1;
 	const bool debug_mode = false;
 
+	program_start = clock();
 
 	if(argc < 3){
 		printf("Usage: %s <sort_type> <file_name>", argv[0]);
@@ -801,6 +804,9 @@ int main(int argc, char* argv[]){
 	}	
 		
 	
+	program_end = clock();
+	total_program_time = (double) ( program_end - program_start) / CLOCKS_PER_SEC;
+
 	if(debug_mode){
 		printf("Total time taken for %d iterations is %f seconds\n", number_of_iterations, total_cpu_time_used);
 		printf("Average time taken for %d iterations is %f seconds\n", number_of_iterations, average_cpu_time_used);
@@ -812,13 +818,14 @@ int main(int argc, char* argv[]){
 		printf("Ended program at: ");
 		print_current_time();	
 	}else{
-		printf("c, %s, %s, %d, #, %06f, %06f, ", sort_type, argv[2], number_of_iterations, average_cpu_time_used, total_copying_time);
+		printf("c, %s, %s, %d, #, %06f, %06f, %06f, ", sort_type, argv[2], number_of_iterations, average_cpu_time_used, total_copying_time, total_program_time);
 		print_current_time();
 	}
 
 	
 	free(data);
 	free(data_original);
+
 
 	return 0;
 }

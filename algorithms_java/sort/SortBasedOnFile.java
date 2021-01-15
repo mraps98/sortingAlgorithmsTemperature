@@ -1,5 +1,7 @@
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -35,6 +37,7 @@ public class SortBasedOnFile{
 			while(reader.readLine() != null){
 				itemCount++;
 			}
+			reader.close();
 		}catch(FileNotFoundException e){
 			System.out.println("File not found");
 			e.printStackTrace();
@@ -58,6 +61,7 @@ public class SortBasedOnFile{
 				itemCount++;
 				line = reader.readLine();
 			}
+			reader.close();
 		}catch(FileNotFoundException e){
 			System.out.println("File not found");
 			e.printStackTrace();
@@ -544,6 +548,19 @@ public class SortBasedOnFile{
 			printCurrentTime();
 		}	
 		
+
+		/* Print sorted array to output.data (maybe for md5sum) */
+		/*
+		try{	
+			BufferedWriter out = new BufferedWriter(new FileWriter("output.dat"));
+			for(int i = 0; i < numberOfItems; i++){
+				out.write(data[i] + "\n");
+			}
+			out.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		*/
 		data = null;
 		dataOriginal = null;
 	}

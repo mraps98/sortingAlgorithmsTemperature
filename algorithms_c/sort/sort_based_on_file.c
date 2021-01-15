@@ -822,7 +822,15 @@ int main(int argc, char* argv[]){
 		print_current_time();
 	}
 
-	
+	/* Print sorted data to output file (maybe to check md5sum) */
+	/*
+	fp = fopen("sorted_output.dat", "w");
+	for(int i = 0; i < number_of_items; i++){
+		fprintf(fp, "%ld\n", data[i]);
+	}
+	fclose(fp);
+	*/
+
 	free(data);
 	free(data_original);
 

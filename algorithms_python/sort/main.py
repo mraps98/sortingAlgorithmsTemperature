@@ -22,7 +22,6 @@ from quick import quickSort
 from radix import radixSort
 from selection import selectionSort
 from shell import shellSort
-from tim import timSort
 from tree import treeSort
 
 # Declaring variables

@@ -6,7 +6,7 @@ def merge(A, temp, frm, mid, to):
 
 	while i <= mid and j <= to:
 		if A[i] < A[j]:
-			temp[j] = A[i]
+			temp[k] = A[i]
 			i = i + 1
 
 		else:

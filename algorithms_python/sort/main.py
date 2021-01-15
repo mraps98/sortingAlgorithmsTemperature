@@ -134,10 +134,7 @@ def main():
 	if(sortType == "bead"):
 		for i in range(numberOfIterations):
 			copyList()
-			if not DEBUG_MODE:
-				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
-				printCurrentTime()
-			else:
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -147,29 +144,29 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "binsertion"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "binsertion"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
-			data = binsertionSort(data)	
+			binsertionSort(data)	
 			end = time.time()
 			totalCpuTime = totalCpuTime + (end - start)
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "bogo"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "bogo"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -179,13 +176,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "bubble"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "bubble"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -195,13 +192,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "bubble_rec"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "bubble_rec"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -211,13 +208,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "cocktail"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "cocktail"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -227,13 +224,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "comb"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "comb"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -243,13 +240,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "cycle"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "cycle"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -259,13 +256,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "gnome"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "gnome"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -275,13 +272,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "heap"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "heap"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -291,13 +288,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "insertion"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "insertion"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -307,13 +304,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "insertion_rec"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "insertion_rec"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -323,13 +320,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "merge"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "merge"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -339,45 +336,45 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "mergebu"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "mergebu"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
-			data = mergebuSort(data)	
+			mergebuSort(data)	
 			end = time.time()
 			totalCpuTime = totalCpuTime + (end - start)
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+			if not DEBUG_MODE:
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 	elif(sortType == "pancake"):
 		for i in range(numberOfIterations):
 			copyList()
-			if not DEBUG_MODE:
-				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
-				printCurrentTime()
-			else:
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
-			data = pancakeSort(data)	
+			pancakeSort(data)	
 			end = time.time()
 			totalCpuTime = totalCpuTime + (end - start)
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "quick"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "quick"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -387,13 +384,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "radix"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "radix"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -403,13 +400,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "selection"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "selection"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -419,13 +416,13 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "shell"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "shell"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -435,29 +432,29 @@ def main():
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "tim"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "tim"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
-			data = timSort(data)	
+			data.sort()	
 			end = time.time()
 			totalCpuTime = totalCpuTime + (end - start)
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
-	elif(sortType == "tree"):
-		for i in range(numberOfIterations):
-			copyList()
 			if not DEBUG_MODE:
 				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
-			else:
+	elif(sortType == "tree"):
+		for i in range(numberOfIterations):
+			copyList()
+			if DEBUG_MODE:
 				print("Started iteration {} of sorting data at ".format(i+1), end="")
 				printCurrentTime()
 			start = time.time()
@@ -466,6 +463,9 @@ def main():
 			totalCpuTime = totalCpuTime + (end - start)
 			if DEBUG_MODE:
 				print("Stopped iteration {} of sorting data at ".format(i+1), end="")
+				printCurrentTime()
+			if not DEBUG_MODE:
+				print("python, {}, {}, {}, {}/{}, ".format(sortType, fileName, numberOfIterations, i+1, numberOfIterations), end="")
 				printCurrentTime()
 	else:
 		print("Unknown sortType entered: {}".format(sortType))
@@ -489,6 +489,11 @@ def main():
 			print("validation: Array not sorted")
 		print("Ended program at: ", end="")
 		printCurrentTime()
+
+	print("length of data", len(data))
+	with open("output.dat", "w") as f:
+		for i in range(len(data)):
+			f.write(str(data[i])+ "\n")
 
 if __name__ == "__main__":
     main()

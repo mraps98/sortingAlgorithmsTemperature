@@ -1,12 +1,46 @@
-#source: https://github.com/TheAlgorithms/Python/blob/master/sorts/pancake_sort.py
+#source: https://www.geeksforgeeks.org/pancake-sorting/ 
+def flip(arr, i):
+	start = 0
+	while start < i:
+		temp = arr[start]
+		arr[start] = arr[i]
+		arr[i] = temp
+		start += 1
+		i -= 1
+
+def findMax(arr, n):
+	mi = 0
+	for i in range(0,n):
+		if arr[i] > arr[mi]:
+			mi = i
+	return mi
+
 def pancakeSort(arr):
-	cur = len(arr)
-	while cur > 1:
-		# Find the maximum number in arr
-		mi = arr.index(max(arr[0:cur]))
-        # Reverse from 0 to mi
-		arr = arr[mi::-1] + arr[mi + 1 : len(arr)]
-		# Reverse whole list
-		arr = arr[cur - 1 :: -1] + arr[cur : len(arr)]
-		cur -= 1
-	return arr
+	n = len(arr)
+     
+    # Start from the complete
+    # array and one by one
+    # reduce current size
+    # by one
+	curr_size = n
+	while curr_size > 1:
+        # Find index of the maximum
+        # element in 
+        # arr[0..curr_size-1]
+		mi = findMax(arr, curr_size)
+ 
+        # Move the maximum element
+        # to end of current array
+        # if it's not already at 
+        # the end
+		if mi != curr_size-1:
+            # To move at the end, 
+            # first move maximum 
+            # number to beginning 
+			flip(arr, mi)
+ 
+            # Now move the maximum 
+            # number to end by
+            # reversing current array
+			flip(arr, curr_size-1)
+		curr_size -= 1

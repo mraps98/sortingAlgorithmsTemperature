@@ -1,17 +1,14 @@
 #source: https://github.com/TheAlgorithms/Python/blob/master/sorts/gnome_sort.py
-def gnomeSort(lst):
-	if len(lst) <= 1:
-		return lst
-
-	i = 1
-
-	while i < len(lst):
-		if lst[i - 1] <= lst[i]:
-			i += 1
-		else:
-			lst[i - 1], lst[i] = lst[i], lst[i - 1]
-			i -= 1
-			if i == 0:
-				i = 1
-
-	return lst
+def gnomeSort( arr): 
+	n = len(arr)
+	index = 0
+	while index < n: 
+		if index == 0: 
+			index = index + 1
+		if arr[index] >= arr[index - 1]: 
+			index = index + 1
+		else: 
+			arr[index], arr[index-1] = arr[index-1], arr[index] 
+			index = index - 1
+  
+	return arr 

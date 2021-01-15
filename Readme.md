@@ -1,6 +1,6 @@
 1. NOTE: For java and c, make sure to run the make command first
 2. NOTE: Some algorithms mich not work with big data or long numbers and might cause issues like stackOverFlow error, recursion limit or segmentation faults
-This project contains the following algorithms:
+# This project contains the following algorithms:
 * generate a file with desired number of random numbers
 	* usage: generate_random_numbers_file.out <number_of_elements>
 * check number of duplicates in file of numbers

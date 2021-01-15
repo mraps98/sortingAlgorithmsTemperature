@@ -1,22 +1,12 @@
-# source: https://github.com/TheAlgorithms/Python/blob/master/sorts/comb_sort.py
-def combSort(data):
-	shrink_factor = 1.3
-	gap = len(data)
-	completed = False
-
-	while not completed:
-
-		# Update the gap value for a next comb
-		gap = int(gap / shrink_factor)
-		if gap <= 1:
-			completed = True
-
-		index = 0
-		while index + gap < len(data):
-			if data[index] > data[index + gap]:
-                # Swap values
-				data[index], data[index + gap] = data[index + gap], data[index]
-				completed = False
-			index += 1
-
-	return data
+# source: https://www.pythonprogramming.in/comb-sort-example-in-python.html
+def combSort(num):
+    gap = len(num)
+    swaps = True
+    while gap > 1 or swaps:
+        gap = max(1, int(gap / 1.25))  # minimum gap is 1
+        swaps = False
+        for i in range(len(num) - gap):
+            j = i+gap
+            if num[i] > num[j]:
+                num[i], num[j] = num[j], num[i]
+                swaps = True

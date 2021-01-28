@@ -10,7 +10,7 @@ make
 #VARIABLES
 declare -i TOTAL_SIZE
 declare -i THIRTY_PERCENT_SIZE
-TOTAL_SIZE=200
+TOTAL_SIZE=$1
 SORTING_ALGORITHMS_PATH="/home/preet/projects/c/sortingAlgorithmsTemperature/"
 GENERATE_RANDOM_PATH="${SORTING_ALGORITHMS_PATH}/generating_data/generate_random_numbers_file.out"
 REMOVE_DUPLICATES_PATH="${SORTING_ALGORITHMS_PATH}/checkDuplicates/removeDuplicates.out"

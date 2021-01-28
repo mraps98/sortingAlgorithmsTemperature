@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 #THIS SCRIPT WILL MAKE TYPE 3 DATA
 
 #CLEAN AND MAKE
@@ -58,11 +57,11 @@ head -n $NUM_DUPLICATES "./second${THIRTY_PERCENT_SIZE}.dat" >> "./fourth${TEN_P
 
 
 #MERGE FOUR SECTIONS
-rm -f "./type3${TOTAL_SIZE}.dat"
-cat "./first${THIRTY_PERCENT_SIZE}.dat" >> "type3${TOTAL_SIZE}.dat"
-cat "./second${THIRTY_PERCENT_SIZE}.dat" >> "type3${TOTAL_SIZE}.dat"
-cat "./third${THIRTY_PERCENT_SIZE}.dat" >> "type3${TOTAL_SIZE}.dat"
-cat "./fourth${TEN_PERCENT_SIZE}.dat" >> "type3${TOTAL_SIZE}.dat"
+rm -f "./type3_${TOTAL_SIZE}.dat"
+cat "./first${THIRTY_PERCENT_SIZE}.dat" >> "type3_${TOTAL_SIZE}.dat"
+cat "./second${THIRTY_PERCENT_SIZE}.dat" >> "type3_${TOTAL_SIZE}.dat"
+cat "./third${THIRTY_PERCENT_SIZE}.dat" >> "type3_${TOTAL_SIZE}.dat"
+cat "./fourth${TEN_PERCENT_SIZE}.dat" >> "type3_${TOTAL_SIZE}.dat"
 
 #DELETE UNECESSARY FILES
 rm "./first${THIRTY_PERCENT_SIZE}.dat" 

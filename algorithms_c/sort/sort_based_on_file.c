@@ -58,6 +58,7 @@ int main(int argc, char* argv[]){
 	double total_program_time = 0;
 	unsigned int number_of_iterations = 1;
 	const bool debug_mode = false;
+	bool print_sorted_to_file = false;
 
 	program_start = clock();
 
@@ -67,6 +68,9 @@ int main(int argc, char* argv[]){
 	}
 	if(argc == 4){
 		number_of_iterations = atoi(argv[3]);
+	}
+	if(argc == 5){
+		print_sorted_to_file = true;
 	}
 	
 	number_of_items = get_num_elements_in_file(argv[2]);
@@ -823,13 +827,13 @@ int main(int argc, char* argv[]){
 	}
 
 	/* Print sorted data to output file (maybe to check md5sum) */
-	/*
-	fp = fopen("sorted_output.dat", "w");
-	for(int i = 0; i < number_of_items; i++){
-		fprintf(fp, "%ld\n", data[i]);
+	if(print_sorted_to_file == true){	
+		fp = fopen("sorted_output.dat", "w");
+			for(int i = 0; i < number_of_items; i++){
+				fprintf(fp, "%ld\n", data[i]);
+			}
+		fclose(fp);
 	}
-	fclose(fp);
-	*/
 
 	free(data);
 	free(data_original);

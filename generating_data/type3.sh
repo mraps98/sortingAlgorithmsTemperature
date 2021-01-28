@@ -1,0 +1,72 @@
+#!/bin/bash
+
+
+#THIS SCRIPT WILL MAKE TYPE 3 DATA
+
+#CLEAN AND MAKE
+make clean
+make
+
+#VARIABLES
+declare -i TOTAL_SIZE
+declare -i THIRTY_PERCENT_SIZE
+TOTAL_SIZE=200
+SORTING_ALGORITHMS_PATH="/home/preet/projects/c/sortingAlgorithmsTemperature/"
+GENERATE_RANDOM_PATH="${SORTING_ALGORITHMS_PATH}/generating_data/generate_random_numbers_file.out"
+REMOVE_DUPLICATES_PATH="${SORTING_ALGORITHMS_PATH}/checkDuplicates/removeDuplicates.out"
+SORT_PATH="${SORTING_ALGORITHMS_PATH}/algorithms_c/sort/sort_based_on_file.out"
+
+THIRTY_PERCENT_SIZE=$((($TOTAL_SIZE*30)/100))
+TEN_PERCENT_SIZE=$((($TOTAL_SIZE/10)))
+NUM_DUPLICATES=$(($TEN_PERCENT_SIZE/5))
+
+#MAKE FIRST ASCENDING
+$GENERATE_RANDOM_PATH $THIRTY_PERCENT_SIZE
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+$SORT_PATH quick "./rand${THIRTY_PERCENT_SIZE}.dat" 1 1
+mv "./sorted_output.dat" "./first${THIRTY_PERCENT_SIZE}.dat"
+
+#MAKE SECOND UNIQUE RANDOM
+$GENERATE_RANDOM_PATH $THIRTY_PERCENT_SIZE
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+mv "./rand${THIRTY_PERCENT_SIZE}.dat" "./second${THIRTY_PERCENT_SIZE}.dat"
+
+#MAKE THIRD DESCENDING
+$GENERATE_RANDOM_PATH $THIRTY_PERCENT_SIZE
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+$REMOVE_DUPLICATES_PATH "./rand${THIRTY_PERCENT_SIZE}.dat"
+$SORT_PATH quick "./rand${THIRTY_PERCENT_SIZE}.dat" 1 1
+mv "./sorted_output.dat" temp.dat
+tac temp.dat >> temp1.dat
+rm temp.dat
+mv  temp1.dat "./third${THIRTY_PERCENT_SIZE}.dat"
+
+#MAKE FOURTH DUPLICATES
+head -n $NUM_DUPLICATES "./second${THIRTY_PERCENT_SIZE}.dat" >> "./fourth${TEN_PERCENT_SIZE}.dat"
+head -n $NUM_DUPLICATES "./second${THIRTY_PERCENT_SIZE}.dat" >> "./fourth${TEN_PERCENT_SIZE}.dat"
+head -n $NUM_DUPLICATES "./second${THIRTY_PERCENT_SIZE}.dat" >> "./fourth${TEN_PERCENT_SIZE}.dat"
+head -n $NUM_DUPLICATES "./second${THIRTY_PERCENT_SIZE}.dat" >> "./fourth${TEN_PERCENT_SIZE}.dat"
+head -n $NUM_DUPLICATES "./second${THIRTY_PERCENT_SIZE}.dat" >> "./fourth${TEN_PERCENT_SIZE}.dat"
+
+
+#MERGE FOUR SECTIONS
+rm -f "./type3${TOTAL_SIZE}.dat"
+cat "./first${THIRTY_PERCENT_SIZE}.dat" >> "type3${TOTAL_SIZE}.dat"
+cat "./second${THIRTY_PERCENT_SIZE}.dat" >> "type3${TOTAL_SIZE}.dat"
+cat "./third${THIRTY_PERCENT_SIZE}.dat" >> "type3${TOTAL_SIZE}.dat"
+cat "./fourth${TEN_PERCENT_SIZE}.dat" >> "type3${TOTAL_SIZE}.dat"
+
+#DELETE UNECESSARY FILES
+rm "./first${THIRTY_PERCENT_SIZE}.dat" 
+rm "./second${THIRTY_PERCENT_SIZE}.dat" 
+rm "./third${THIRTY_PERCENT_SIZE}.dat" 
+rm "./fourth${TEN_PERCENT_SIZE}.dat" 
+rm "./rand${THIRTY_PERCENT_SIZE}.dat"
